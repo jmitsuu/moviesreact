@@ -4,7 +4,7 @@ import { PiSmileySad } from "react-icons/pi";
 
 export function Error404() {
  return (
-  <div className=" relative  bg-[#ddd8e1]">
+  <div className=" relative w-screen bg-[#ddd8e1]">
    <Header />
    <div className="flex">
     <MenuAside />

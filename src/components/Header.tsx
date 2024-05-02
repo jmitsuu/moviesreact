@@ -2,8 +2,8 @@ import { Input } from "@/components/ui/input";
 import { SlMagnifier } from "react-icons/sl";
 export function Header() {
  return (
-  <header className="w-screen h-20  bg-[#242029] flex items-center justify-between px-10">
-   <div className="gap-10 flex">
+  <header className="w-full h-20  bg-[#242029] flex items-center justify-between px-10">
+   <div className="gap-10  flex">
     <span className="text-xl text-gray-200 font-bold">LOGO</span>
     <div className=" relative">
      <SlMagnifier className="absolute top-2 -right-3 " />
