@@ -8,7 +8,7 @@ export function FetchReview(paramId:number) {
   isLoading,
   isError,
  } = useQuery({
-  queryKey: ["playing"],
+  queryKey: ["reviews"],
   queryFn: async () => {
    const { data } = await review.get(
     `/id/${paramId}`
