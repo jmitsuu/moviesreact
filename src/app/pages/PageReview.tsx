@@ -6,14 +6,12 @@ import { FetchReview } from "@/api/reviews/FetchReview";
 import { ProfileReview } from "@/components/review/ProfileReview";
 import { ModalComments } from "@/components/review/ModalComments";
 
-// import { BarProgressAvaliation } from "@/components/BarProgressAvaliation";
-
 const urlImage = "https://image.tmdb.org/t/p/w500";
 
 export function PageReview() {
  const { id } = useParams();
  const { movies, isLoading } = FetchMovies();
- const { response } = FetchReview(Number(id));
+ const { response, refetch } = FetchReview(Number(id));
 
  if (isLoading) {
   return <div>carregando...</div>;
@@ -60,7 +58,7 @@ export function PageReview() {
       </div>
      </div>
     </div>
-    <div className="text-black min-w-96 gap-10 p-8 flex flex-col">
+    <div className="text-black  gap-10 p-8 flex flex-col">
      {/* {dados.map((el:any)=>{
       return(
         <BarProgressAvaliation total={el}/>
@@ -70,21 +68,29 @@ export function PageReview() {
      } */}
     </div>
    </div>
-   <div className=" min-h-80  mt-20 bg-white p-10  rounded-md  transition duration-500">
-    <div className=" ">
-     <div className="float-right ">
-      <div className="flex flex-col justify-center">
-        <ModalComments />
-      </div>
-     </div>
-     <h1 className={`text-gray-700 uppercase text-4xl `}>Analises</h1>
-    </div>
 
+   <div className=" min-h-80 mt-20 bg-white p-10  rounded-md   transition duration-500">
+    <div className=" w-full ">
+     <h1 className={`text-gray-700 uppercase text-4xl `}>Analises</h1>
+     <div className="float-right">
+      <ModalComments
+       id={findItem.id}
+       title={findItem.title}
+       refetch={refetch}
+      />
+     </div>
+    </div>
     <div
-     className={`w-full h-80 overflow-y-auto flex flex-col border p-2 rounded-md mt-20 `}
+     className={`w-full   flex flex-col border-b pb-4 p-2   mt-20`}
+    >
+    
+
+    </div>
+    <div
+     className={`w-full overflow-y-auto    flex flex-col border p-2 rounded-md mt-20 `}
     >
      {dados.includes("Não existem dados para retornar") ? (
-      <div className="w-full mt-10 text-center">
+      <div className="w-full mt-10 text-center  p-20">
        <h1 className="">Não há comentarios até o momento</h1>
        <p className="cursor-pointer">clique aqui e seja o primeiro :)</p>
       </div>

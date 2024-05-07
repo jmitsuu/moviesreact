@@ -25,12 +25,7 @@ const listMenu = [
   route: "/reviews",
   title: "Reviews",
   icon: <MdRateReview />,
- },
- {
-  route: "/yourreviews",
-  title: "Seus Reviews",
-  icon: <TbFileLike />,
- },
+ }
 ];
 
 export function MenuAside() {

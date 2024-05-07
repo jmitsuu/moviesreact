@@ -7,6 +7,7 @@ export function FetchReview(paramId:number) {
   data: response,
   isLoading,
   isError,
+  refetch
  } = useQuery({
   queryKey: ["reviews"],
   queryFn: async () => {
@@ -18,5 +19,5 @@ export function FetchReview(paramId:number) {
   }
  });
 
- return { response, isLoading, isError,  };
+ return { response, isLoading, isError, refetch };
 }

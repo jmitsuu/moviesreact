@@ -1,82 +1,97 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-// import { BarProgressAvaliation } from "@/components/BarProgressAvaliation";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button"
 import {
- Sheet,
- SheetContent,
- SheetHeader,
- SheetTitle,
- SheetTrigger,
-} from "@/components/ui/sheet";
-import { X } from "lucide-react";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+
+
 import { useMutation } from "@tanstack/react-query";
-import {  review } from "@/http/instance";
+import { review } from "@/http/instance";
+import { X } from "lucide-react";
 type Inputs = {
-  inputDescription: string;
-  inputVote: number;
+ inputDescription: string;
+ inputVote: number;
+};
+interface typeComments {
+ title: string;
+ id: string,
+ refetch?:any
+}
+
+export function ModalComments({id, title, refetch }:typeComments) {
+ const [ctrlComments, setCtrlComents] = useState(false);
+ const {
+  register,
+  handleSubmit,
+  formState: { errors },
+ } = useForm<Inputs>();
+
+ const onSubmit: SubmitHandler<Inputs> = ({
+  inputVote,
+  inputDescription,
+ }: Inputs) => {
+  const newTodo = {
+   title: title,
+   movieId: id,
+   vote: inputVote,
+   description: inputDescription,
+  };
+  mutation.mutate(JSON.stringify(newTodo));
  };
- interface typeComments{
-  title:string,
-  movieId:number,
- }
+ const mutation = useMutation({
+  mutationFn: (newTodo: any) => {
+   return review.post("/movie", newTodo);
+  },
+  onSuccess: () => {
+   setCtrlComents(false)
+   refetch()
+  },
+ });
+ return (
+  <Dialog open={ctrlComments}>
+    
+      <DialogTrigger asChild>
+        <Button variant="outline" onClick={()=>setCtrlComents(true)}>Novo Comentario</Button>
+      </DialogTrigger>
+      <DialogContent className="p-10 w-full  " >
+      <X className="h-4 w-4 absolute right-3 top-4  cursor-pointer" onClick={()=>setCtrlComents(false)} />
+        <DialogHeader className="mt-10">
+     
+          <DialogTitle>Novo Comentario</DialogTitle>
+          <DialogDescription>
+            Descreva a sua experiencia em relação ao filme, mas lembre-se de ser cordial :) 
+          </DialogDescription>
+       
+        </DialogHeader>
+        <form
+       onSubmit={handleSubmit(onSubmit)}
+       className=" h-full flex flex-col m-auto  gap-4 mt-10"
+      >
+       <Textarea
+        {...register("inputDescription", { required: true })}
+        className="resize-none w-96"
+       />
+       {errors.inputDescription && <span>Campo Obrigatório</span>}
+       <Input
+        {...register("inputVote", { required: true })}
+        className="mt-4 w-44"
+        placeholder="voto 1-5"
+        type="number"
+        max={5}
+       />
+       {errors.inputVote && <span>Campo Obrigatório</span>}
 
-export function ModalComments({title, movieId}:typeComments){
-  const [ctrlComments, setCtrlComents] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-   } = useForm<Inputs>();
-   const onSubmit: SubmitHandler<Inputs> = ({inputVote, inputDescription}) => {
-mutation.mutate(void {
-  "vote":inputVote,
-  "description":inputDescription
-})
-  
-   };
-   const mutation =   useMutation({
-    mutationFn:(newItems) =>{
-      return review.post("/movie", {
-        "title":title,
-        "movieId":movieId,
-        newItems
-
-      })
-    }
-  })
-  return (
-    <Sheet open={ctrlComments}>
-    <SheetTrigger onClick={()=>{setCtrlComents(true)}} >Open</SheetTrigger>
-    <SheetContent  side={"bottom"}  className=" m-auto">
-     <SheetHeader>
-      <SheetTitle className="text-center mb-4">Comente sobre o filme?</SheetTitle>
-      <X className="absolute cursor-pointer right-10 top-3 h-10 w-10" onClick={()=>{setCtrlComents(false)}} />
-     </SheetHeader>
-     <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="w-[800px] h-full flex flex-col m-auto  gap-4"
-     >
-      <Textarea {...register("inputDescription", { required: true })} className="resize-none" />
-      {errors.inputDescription && <span>Campo Obrigatório</span>}
-      <Input
-       {...register("inputVote", { required: true })}
-       className="mt-4 w-44"
-       placeholder="voto 1-5"
-       type="number"
-       max={5}
-      />
-      {errors.inputVote && <span>Campo Obrigatório</span>}
-
-      <Button className="w-44 m-auto">Enviar</Button>
-
-      <Button className="w-44 m-auto" variant="outline">
-       Cancel
-      </Button>
-     </form>
-    </SheetContent>
-   </Sheet>
-  )
+       <Button className="w-44 m-auto">Enviar</Button>
+      </form>
+      </DialogContent>
+    </Dialog>
+ );
 }
