@@ -5,39 +5,47 @@ import { IoStar } from "react-icons/io5";
 import { FetchReview } from "@/api/reviews/FetchReview";
 import { ProfileReview } from "@/components/review/ProfileReview";
 import { ModalComments } from "@/components/review/ModalComments";
+import { BarProgressAvaliation } from "@/components/review/BarProgressAvaliation";
+import { FetchPlayingNow } from "@/api/movies/FetchPlayingNow";
 
-const urlImage = "https://image.tmdb.org/t/p/w500";
+const urlImage = "https://image.tmdb.org/t/p/original";
 
 export function PageReview() {
  const { id } = useParams();
  const { movies, isLoading } = FetchMovies();
+ const {movies:playingNow} = FetchPlayingNow()
  const { response, refetch } = FetchReview(Number(id));
 
  if (isLoading) {
   return <div>carregando...</div>;
  }
 
- const { lists } = useGetDetails(movies);
+ const { lists } = useGetDetails( movies);
  const findItem = lists.find((item: TypeMovie) => item.id === Number(id));
  if (!response) return;
  const { dados } = response;
 
+
+ const url = JSON.stringify(urlImage+findItem.backdrop_path)
  return (
-  <div className="w-screen container  min-h-full bg-[#ddd8e1] rounded-md p-5">
-   <div className={` w-full flex  justify-between bg-white p-10 rounded-md`}>
-    <div className="w-[600px]   p-4">
-     <h1 className="text-gray-700 font-bold text-4xl mb-10">
+  <div className="w-screen container  min-h-full bg-[#ddd8e1] rounded-md p-5 ">
+   <div
+    style={{ backgroundImage: `url(${url})` }}
+    className={` w-full flex  justify-between bg-black bg-cover p-10 rounded-md"
+     `}>
+    <div className="w-[600px]   p-4 bg-black/50 rounded-md text-white" >
+     <h1 className="font-bold text-4xl mb-10">
       {findItem.title}
      </h1>
      <div className="flex  gap-6">
       <img
        src={urlImage + findItem.poster_path}
-       className="h-64 w-52 rounded-md "
+       className="h-72  rounded-md "
       />
-      <p className="text-gray-700 text-[0.9rem]">{findItem.overview}</p>
+      <p className=" text-[0.9rem]">{findItem.overview}</p>
      </div>
      <div>
-      <div className="flex gap-4 text-xs font-bold mt-4 text-gray-600">
+      <div className="flex gap-4 text-xs font-bold mt-4 ">
        <h1 className="flex items-center">
         nota - <IoStar className="text-yellow-500" />
        </h1>{" "}
@@ -50,7 +58,7 @@ export function PageReview() {
       <div className="flex gap-2 mt-5">
        {findItem.genre_ids.map((el: { name: string }) => {
         return (
-         <h3 key={el.name} className="text-slate-600 font-semibold ">
+         <h3 key={el.name} className=" font-semibold ">
           {el.name}
          </h3>
         );
@@ -58,14 +66,9 @@ export function PageReview() {
       </div>
      </div>
     </div>
-    <div className="text-black  gap-10 p-8 flex flex-col">
-     {/* {dados.map((el:any)=>{
-      return(
-        <BarProgressAvaliation total={el}/>
-      )
-     })
-
-     } */}
+    <div className="bg-black/50 rounded-md text-white justify-center px-10  gap-10 p-8 flex flex-col">
+     <h1>Avaliações</h1>
+      <BarProgressAvaliation total={dados || 'sem avaliações'} />
     </div>
    </div>
 

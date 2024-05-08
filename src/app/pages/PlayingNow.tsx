@@ -2,7 +2,6 @@ import { FetchPlayingNow } from "@/api/movies/FetchPlayingNow";
 import { Title } from "@/components/Title";
 import { CardMovie } from "@/components/movie/CardMovie";
 import { LayoutCards } from "@/layout/LayoutCards";
-
 export function PlayingNow() {
  const { movies, isLoading } = FetchPlayingNow();
 
@@ -25,6 +24,7 @@ export function PlayingNow() {
        title={film.title}
        release_date={film.release_date}
        vote_average={film.vote_average}
+       genre_ids={film.genre_ids}
        id={film.id}
       />
      );
