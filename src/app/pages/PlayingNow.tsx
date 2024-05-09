@@ -25,7 +25,7 @@ export function PlayingNow() {
        release_date={film.release_date}
        vote_average={film.vote_average}
        genre_ids={film.genre_ids}
-       id={film.id}
+       id={film.title}
       />
      );
     })}

@@ -1,7 +1,7 @@
 import { review } from "@/http/instance";
 import { useQuery } from "@tanstack/react-query";
 
-export function FetchReview(paramId:number) {
+export function FetchReview(findId:string) {
 
  const {
   data: response,
@@ -12,7 +12,7 @@ export function FetchReview(paramId:number) {
   queryKey: ["reviews"],
   queryFn: async () => {
    const { data } = await review.get(
-    `/id/${paramId}`
+    `/id/${findId}`
    );
  return data
 

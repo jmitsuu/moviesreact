@@ -7,36 +7,51 @@ import { ProfileReview } from "@/components/review/ProfileReview";
 import { ModalComments } from "@/components/review/ModalComments";
 import { BarProgressAvaliation } from "@/components/review/BarProgressAvaliation";
 import { FetchPlayingNow } from "@/api/movies/FetchPlayingNow";
+import { FindMovie } from "@/api/movies/FindMovie";
 
 const urlImage = "https://image.tmdb.org/t/p/original";
 
 export function PageReview() {
  const { id } = useParams();
- const { movies, isLoading } = FetchMovies();
- const {movies:playingNow} = FetchPlayingNow()
- const { response, refetch } = FetchReview(Number(id));
+ let findIdComments = ''
+ //  const { movies, isLoading } = FetchMovies();
+ //  const {movies:playingNow} = FetchPlayingNow();
+ // const findId = search.results.find(id => id.id);
+// console.log(findId.id)
+
+const { search, isLoading } = FindMovie(`${id}`);
+
+ const { response, refetch,isError } = FetchReview(`${id.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase()}`);
+ 
+
 
  if (isLoading) {
-  return <div>carregando...</div>;
+  return <div>carregando</div>;
  }
 
- const { lists } = useGetDetails( movies);
- const findItem = lists.find((item: TypeMovie) => item.id === Number(id));
- if (!response) return;
+ const { lists } = useGetDetails(search);
+
+
+const findItem = lists.find((item:{title:string}) => item.title === id);
+
+findIdComments = findItem.id;
+console.log(findIdComments)
+if (isLoading || !response) {
+  return <div>carregando</div>;
+ }
+
  const { dados } = response;
-
-
- const url = JSON.stringify(urlImage+findItem.backdrop_path)
+ console.log(dados)
+  const url = JSON.stringify(urlImage+findItem.backdrop_path)
  return (
   <div className="w-screen container  min-h-full bg-[#ddd8e1] rounded-md p-5 ">
    <div
     style={{ backgroundImage: `url(${url})` }}
     className={` w-full flex  justify-between bg-black bg-cover p-10 rounded-md"
-     `}>
-    <div className="w-[600px]   p-4 bg-black/50 rounded-md text-white" >
-     <h1 className="font-bold text-4xl mb-10">
-      {findItem.title}
-     </h1>
+     `}
+   >
+    <div className="w-[600px]   p-4 bg-black/50 rounded-md text-white">
+     <h1 className="font-bold text-4xl mb-10">{findItem.title}</h1>
      <div className="flex  gap-6">
       <img
        src={urlImage + findItem.poster_path}
@@ -65,10 +80,12 @@ export function PageReview() {
        })}
       </div>
      </div>
+   
     </div>
+ 
     <div className="bg-black/50 rounded-md text-white justify-center px-10  gap-10 p-8 flex flex-col">
      <h1>Avaliações</h1>
-      <BarProgressAvaliation total={dados || 'sem avaliações'} />
+     <BarProgressAvaliation total={dados || "sem avaliações"} />
     </div>
    </div>
 
@@ -83,12 +100,7 @@ export function PageReview() {
       />
      </div>
     </div>
-    <div
-     className={`w-full   flex flex-col border-b pb-4 p-2   mt-20`}
-    >
-    
-
-    </div>
+    <div className={`w-full   flex flex-col border-b pb-4 p-2   mt-20`}></div>
     <div
      className={`w-full overflow-y-auto    flex flex-col border p-2 rounded-md mt-20 `}
     >
