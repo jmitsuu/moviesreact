@@ -13,6 +13,8 @@ const urlImage = "https://image.tmdb.org/t/p/original";
 
 export function PageReview() {
  const { id } = useParams();
+ console.log(id)
+
  const { search, isLoading } = FindMovie(`${id}`);
 
  const { response, refetch } = FetchReview(`${id}`);
@@ -25,6 +27,7 @@ export function PageReview() {
  const findItem = lists.find(
   (item: { title: string }) => useRemoveSpace(item.title) === id
  );
+
  if (isLoading || !response) {
   return <div>carregando</div>;
  }

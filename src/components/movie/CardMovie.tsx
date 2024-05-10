@@ -9,6 +9,7 @@ export function CardMovie({
  title,
  vote_average,
  id,
+
 }: TypeMovie) {
  return (
   <>

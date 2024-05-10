@@ -15,7 +15,7 @@ export function Reviews() {
 const groupArray = Object.values(useGroupByTitle(reviews.dados));
 
  return <div className="w-screen h-screen gap-3 container">
-   <h1 className="text-4xl text-center mb-10  uppercase">Bem avaliados</h1>
+   <h1 className="text-5xl text-center mb-10  uppercase font-bold">Top #100 Reviews</h1>
 
 {groupArray.map((item:any, index)=>{
   return(
@@ -27,6 +27,7 @@ const groupArray = Object.values(useGroupByTitle(reviews.dados));
     vote={item.totalVotes}
     data={item.totalTitles}
     />
+    
   )
 })
 

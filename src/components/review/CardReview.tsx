@@ -1,4 +1,5 @@
 import { useAvaliationStars } from "@/hooks/useAvaliationStars";
+
 interface typeCardReview{
   title:string,
   vote:number,
@@ -27,7 +28,8 @@ export function CardReview({title, vote, data, listTop, backdrop}:typeCardReview
       <h1 className="text-gray-100 text-xl">Reviews ({data})</h1>
      </div>
       </div>
-   
+  
     </div>
+
   )
 }
