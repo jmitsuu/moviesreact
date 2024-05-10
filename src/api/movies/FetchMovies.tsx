@@ -1,5 +1,5 @@
 
-import { instance } from "@/http/instance";
+import { instance } from "@/http/UrlRequest";
 import { useQuery } from "@tanstack/react-query";
 
 export function FetchMovies() {

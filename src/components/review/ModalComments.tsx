@@ -14,20 +14,22 @@ import { Input } from "@/components/ui/input"
 
 
 import { useMutation } from "@tanstack/react-query";
-import { review } from "@/http/instance";
+import { review } from "@/http/UrlRequest";
 import { X } from "lucide-react";
 type Inputs = {
  inputDescription: string;
  inputVote: number;
 };
 interface typeComments {
-  formatted_title:string,
+ formatted_title:string,
  title: string;
  id: string,
+ poster_path:string,
+ backdrop_path:string,
  refetch?:any
 }
 
-export function ModalComments({id, title, refetch, formatted_title }:typeComments) {
+export function ModalComments({id, title, refetch, formatted_title, poster_path, backdrop_path }:typeComments) {
  const [ctrlComments, setCtrlComents] = useState(false);
  const {
   register,
@@ -40,7 +42,9 @@ export function ModalComments({id, title, refetch, formatted_title }:typeComment
   inputDescription,
  }: Inputs) => {
   const newTodo = {
-    formatted_title:formatted_title,
+   formatted_title:formatted_title,
+   poster_path:poster_path,
+   backdrop_path:backdrop_path,
    title: title,
    movieId: id,
    vote: inputVote,

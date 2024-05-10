@@ -30,7 +30,6 @@ export function PageReview() {
  }
 
  const { dados } = response;
- console.log(dados);
  const url = JSON.stringify(urlImage + findItem.backdrop_path);
  return (
   <div className="w-screen container  min-h-full bg-[#ddd8e1] rounded-md p-5 ">
@@ -86,6 +85,8 @@ export function PageReview() {
        formatted_title={`${id}`}
        id={findItem.id}
        title={findItem.title}
+       poster_path={findItem.poster_path}
+       backdrop_path={findItem.backdrop_path}
        refetch={refetch}
       />
      </div>

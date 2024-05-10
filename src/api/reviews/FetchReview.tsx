@@ -1,4 +1,4 @@
-import { review } from "@/http/instance";
+import { review } from "@/http/UrlRequest";
 import { useQuery } from "@tanstack/react-query";
 
 export function FetchReview(findId:string) {

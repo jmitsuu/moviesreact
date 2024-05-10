@@ -1,4 +1,5 @@
-import { instance } from "@/http/instance";
+
+import { instance } from "@/http/UrlRequest";
 import { useQuery } from "@tanstack/react-query";
 
 export function FetchPlayingNow() {
@@ -9,7 +10,7 @@ export function FetchPlayingNow() {
   refetch,
   isError,
  } = useQuery({
-  queryKey: ["playing"],
+  queryKey: ["playing",page],
   queryFn: async () => {
    const { data } = await instance.get(
     `/movie/now_playing?language=pt-BR&page=${page}`
