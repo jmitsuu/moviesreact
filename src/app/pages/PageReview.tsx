@@ -1,4 +1,3 @@
-import { FetchMovies } from "@/api/movies/FetchMovies";
 import { useGetDetails } from "@/hooks/useGetDetails";
 import { useParams } from "react-router-dom";
 import { IoStar } from "react-icons/io5";
@@ -6,43 +5,31 @@ import { FetchReview } from "@/api/reviews/FetchReview";
 import { ProfileReview } from "@/components/review/ProfileReview";
 import { ModalComments } from "@/components/review/ModalComments";
 import { BarProgressAvaliation } from "@/components/review/BarProgressAvaliation";
-import { FetchPlayingNow } from "@/api/movies/FetchPlayingNow";
 import { FindMovie } from "@/api/movies/FindMovie";
+import { useFilterVotes } from "@/hooks/useFilterVotes";
+import { useRemoveSpace } from "@/hooks/useRemoveSpace";
 
 const urlImage = "https://image.tmdb.org/t/p/original";
 
 export function PageReview() {
  const { id } = useParams();
- let findIdComments = ''
- //  const { movies, isLoading } = FetchMovies();
- //  const {movies:playingNow} = FetchPlayingNow();
- // const findId = search.results.find(id => id.id);
-// console.log(findId.id)
+ const { search, isLoading } = FindMovie(`${id}`);
 
-const { search, isLoading } = FindMovie(`${id}`);
-
- const { response, refetch,isError } = FetchReview(`${id.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase()}`);
- 
-
+ const { response, refetch, isError } = FetchReview(useRemoveSpace(`${id}`));
 
  if (isLoading) {
   return <div>carregando</div>;
  }
 
- const { lists } = useGetDetails(search);
-
-
-const findItem = lists.find((item:{title:string}) => item.title === id);
-
-findIdComments = findItem.id;
-console.log(findIdComments)
-if (isLoading || !response) {
+ const { lists }: any = useGetDetails(search);
+ const findItem = lists.find((item: { title: string }) => item.title === id);
+ if (isLoading || !response) {
   return <div>carregando</div>;
  }
 
  const { dados } = response;
- console.log(dados)
-  const url = JSON.stringify(urlImage+findItem.backdrop_path)
+ console.log(dados);
+ const url = JSON.stringify(urlImage + findItem.backdrop_path);
  return (
   <div className="w-screen container  min-h-full bg-[#ddd8e1] rounded-md p-5 ">
    <div
@@ -62,7 +49,8 @@ if (isLoading || !response) {
      <div>
       <div className="flex gap-4 text-xs font-bold mt-4 ">
        <h1 className="flex items-center">
-        nota - <IoStar className="text-yellow-500" />
+        {useFilterVotes(dados) / dados.length} -{" "}
+        <IoStar className="text-yellow-500" />
        </h1>{" "}
        {dados.includes("Não existem dados para retornar") ? (
         <h2> ((0) reviews)</h2>
@@ -80,9 +68,8 @@ if (isLoading || !response) {
        })}
       </div>
      </div>
-   
     </div>
- 
+
     <div className="bg-black/50 rounded-md text-white justify-center px-10  gap-10 p-8 flex flex-col">
      <h1>Avaliações</h1>
      <BarProgressAvaliation total={dados || "sem avaliações"} />
@@ -94,6 +81,7 @@ if (isLoading || !response) {
      <h1 className={`text-gray-700 uppercase text-4xl `}>Analises</h1>
      <div className="float-right">
       <ModalComments
+      formatted_title={`${id}`}
        id={findItem.id}
        title={findItem.title}
        refetch={refetch}

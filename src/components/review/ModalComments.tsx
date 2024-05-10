@@ -21,12 +21,13 @@ type Inputs = {
  inputVote: number;
 };
 interface typeComments {
+  formatted_title:string,
  title: string;
  id: string,
  refetch?:any
 }
 
-export function ModalComments({id, title, refetch }:typeComments) {
+export function ModalComments({id, title, refetch, formatted_title }:typeComments) {
  const [ctrlComments, setCtrlComents] = useState(false);
  const {
   register,
@@ -39,6 +40,7 @@ export function ModalComments({id, title, refetch }:typeComments) {
   inputDescription,
  }: Inputs) => {
   const newTodo = {
+    formatted_title:formatted_title,
    title: title,
    movieId: id,
    vote: inputVote,
