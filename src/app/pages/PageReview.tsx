@@ -9,21 +9,22 @@ import { FindMovie } from "@/api/movies/FindMovie";
 import { useFilterVotes } from "@/hooks/useFilterVotes";
 import { useRemoveSpace } from "@/hooks/useRemoveSpace";
 
-
 const urlImage = "https://image.tmdb.org/t/p/original";
 
 export function PageReview() {
  const { id } = useParams();
  const { search, isLoading } = FindMovie(`${id}`);
 
- const { response, refetch, isError } = FetchReview(`${id}`);
+ const { response, refetch } = FetchReview(`${id}`);
 
  if (isLoading) {
   return <div>carregando</div>;
  }
 
  const { lists }: any = useGetDetails(search);
- const findItem = lists.find((item: { title: string }) => useRemoveSpace(item.title) === id);
+ const findItem = lists.find(
+  (item: { title: string }) => useRemoveSpace(item.title) === id
+ );
  if (isLoading || !response) {
   return <div>carregando</div>;
  }
@@ -50,7 +51,7 @@ export function PageReview() {
      <div>
       <div className="flex gap-4 text-xs font-bold mt-4 ">
        <h1 className="flex items-center">
-        {useFilterVotes(dados) / dados.length} -{" "}
+        {(useFilterVotes(dados) / dados.length).toFixed(1)} -{" "}
         <IoStar className="text-yellow-500" />
        </h1>{" "}
        {dados.includes("Não existem dados para retornar") ? (
@@ -82,7 +83,7 @@ export function PageReview() {
      <h1 className={`text-gray-700 uppercase text-4xl `}>Analises</h1>
      <div className="float-right">
       <ModalComments
-      formatted_title={`${id}`}
+       formatted_title={`${id}`}
        id={findItem.id}
        title={findItem.title}
        refetch={refetch}
