@@ -9,20 +9,21 @@ import { FindMovie } from "@/api/movies/FindMovie";
 import { useFilterVotes } from "@/hooks/useFilterVotes";
 import { useRemoveSpace } from "@/hooks/useRemoveSpace";
 
+
 const urlImage = "https://image.tmdb.org/t/p/original";
 
 export function PageReview() {
  const { id } = useParams();
  const { search, isLoading } = FindMovie(`${id}`);
 
- const { response, refetch, isError } = FetchReview(useRemoveSpace(`${id}`));
+ const { response, refetch, isError } = FetchReview(`${id}`);
 
  if (isLoading) {
   return <div>carregando</div>;
  }
 
  const { lists }: any = useGetDetails(search);
- const findItem = lists.find((item: { title: string }) => item.title === id);
+ const findItem = lists.find((item: { title: string }) => useRemoveSpace(item.title) === id);
  if (isLoading || !response) {
   return <div>carregando</div>;
  }
