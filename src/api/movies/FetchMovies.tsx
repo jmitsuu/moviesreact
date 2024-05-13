@@ -1,10 +1,11 @@
 
 import { instance } from "@/http/UrlRequest";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 export function FetchMovies() {
+const [page, setPage] = useState(1)
 
- let page = 1;
  const {
   data: movies,
   isLoading,
@@ -14,13 +15,18 @@ export function FetchMovies() {
   queryKey: ["movies"],
   queryFn: async () => {
    const { data } = await instance.get(
-    `/movie/popular?language=pt-BR&page=${page}`
+    `/movie/popular?language=pt-BR`,{
+      params:{
+        page:page 
+      }
+    }
    );
-   return data;
+   return data
   },
  });
 
 
 
- return { movies, isLoading, isError, page, refetch };
+
+ return { movies, isLoading, isError, page, setPage ,  refetch };
 }

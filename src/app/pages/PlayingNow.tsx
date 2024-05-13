@@ -8,7 +8,7 @@ export function PlayingNow() {
  if (isLoading) {
   return <div>carregando...</div>;
  }
-
+console.log("movies")
  return (
   <div>
    <Title
