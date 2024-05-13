@@ -7,25 +7,29 @@ import InfiniteScroll from "react-infinite-scroll-component";
 export function Popular() {
  const { movies, isLoading, page, refetch, setPage } = FetchMovies();
  const [data, setData] = useState<any>([]);
- const [control, setControl] = useState(false);
+ useEffect(() => {
+  if(!movies) return;
+  setTimeout(()=>{
+    setData(movies.results);
+  },150)
+   
+   },[movies]);
  if (isLoading) {
   return <div>carregando...</div>;
  }
 
- useEffect(() => {
-  setData(movies.results);
- }, [control]);
 
- if (data.length === 0) return;
+ console.log(movies.results)
+ if (!data) return;
  const fetchMoreData = () => {
   //  nextPage()
-  setPage(page + 1);
+
 
   setTimeout(() => {
-    refetch();
+    setPage(page + 1);
    setData((state: any) => state.concat(movies.results));
-
-  }, 1500);
+  }, 2500);
+  refetch()
  };
 
  return (
