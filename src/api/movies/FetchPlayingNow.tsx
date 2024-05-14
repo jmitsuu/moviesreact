@@ -1,23 +1,26 @@
-
 import { instance } from "@/http/UrlRequest";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export function FetchPlayingNow() {
- let page = 1;
+ const [page, setPage] = useState(1);
+
  const {
   data: movies,
   isLoading,
   refetch,
   isError,
  } = useQuery({
-  queryKey: ["playing",page],
+  queryKey: ["playing"],
   queryFn: async () => {
-   const { data } = await instance.get(
-    `/movie/now_playing?language=pt-BR&page=${page}`
-   );
+   const { data } = await instance.get(`/movie/now_playing?language=pt-BR`, {
+    params: {
+     page: page,
+    },
+   });
    return data;
   },
  });
 
- return { movies, isLoading, isError, page, refetch };
+ return { movies, isLoading, isError, page, setPage, refetch };
 }

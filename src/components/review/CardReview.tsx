@@ -8,7 +8,7 @@ interface typeCardReview{
   backdrop:string
 }
 export function CardReview({title, vote, data, listTop, backdrop}:typeCardReview) {
-  const urlImage = "https://image.tmdb.org/t/p/original";
+  const urlImage = "https://image.tmdb.org/t/p/w500";
   const url = urlImage+backdrop;
   return(
     <div 

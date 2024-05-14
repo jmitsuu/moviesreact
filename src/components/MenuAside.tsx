@@ -3,7 +3,7 @@ import { BiCameraMovie } from "react-icons/bi";
 import { MdRateReview } from "react-icons/md";
 import { TbDeviceAnalytics } from "react-icons/tb";
 import { IoHomeOutline } from "react-icons/io5";
-import { TbFileLike } from "react-icons/tb";
+
 
 const listMenu = [
   {
@@ -31,13 +31,16 @@ const listMenu = [
 export function MenuAside() {
  return (
   <aside className="min-h-screen min-w-44 p-2 px-4 bg-[#322d38]">
-   {listMenu.map((el: any) => {
+    <div className="fixed">
+    {listMenu.map((el: any) => {
     return (
-      <div    key={el.title} className="w-full relative">
+      <div    key={el.title} className="w-full bg-transparent">
           <Link
-      className="flex text-gray-200 items-center gap-2 my-8"
+          
+      className="flex text-gray-200 p-2 items-center gap-2 my-8 rounded hover:shadow-lg hover:shadow-red-500 shadow-b-2 shadow-r-[3px] -shadow-spread-2"
    
       to={el.route}
+      
       
      >
       {el.icon} {el.title}
@@ -45,6 +48,9 @@ export function MenuAside() {
       </div>
     );
    })}
+
+    </div>
+
   </aside>
  );
 }

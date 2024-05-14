@@ -19,17 +19,15 @@ export function Popular() {
  }
 
 
- console.log(movies.results)
  if (!data) return;
  const fetchMoreData = () => {
-  //  nextPage()
-
 
   setTimeout(() => {
-    setPage(page + 1);
-   setData((state: any) => state.concat(movies.results));
-  }, 2500);
-  refetch()
+    refetch()
+  }, 1500);
+  setPage(page + 1);
+  setData((state: TypeMovie[]) => state.concat(movies.results));
+
  };
 
  return (
@@ -38,6 +36,7 @@ export function Popular() {
     title="Filmes"
     description="Encontre os titulos que estão em destaque"
    />
+
    <InfiniteScroll
     dataLength={data.length}
     next={fetchMoreData}
