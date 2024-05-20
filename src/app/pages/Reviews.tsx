@@ -13,11 +13,14 @@ export function Reviews() {
   }
 
 const groupArray = Object.values(useGroupByTitle(reviews.dados));
+const onHundred = groupArray.slice(0,100)
 
- return <div className="w-screen h-screen gap-3 container">
-   <h1 className="text-5xl text-center mb-10  uppercase font-bold">Top #100 Reviews</h1>
+ return <div className=" mt-10   container  gap-3  ">
+   <h1 className="text-7xl text-center  mb-20  uppercase font-bold">Top #100 Reviews</h1>
 
-{groupArray.map((item:any, index)=>{
+
+<div className="  ">
+{onHundred.map((item:any, index)=>{
   return(
     <CardReview
     key={index}
@@ -26,11 +29,12 @@ const groupArray = Object.values(useGroupByTitle(reviews.dados));
     title={item.title}
     vote={item.totalVotes}
     data={item.totalTitles}
+    id={item.title}
     />
     
   )
 })
-
 }
+</div>
  </div>;
 }

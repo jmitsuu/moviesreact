@@ -3,7 +3,7 @@ import "./index.css";
 
 function App() {
  return (
-  <div className=" m-20 px-4">
+  <div className=" items-center flex flex-col px-10     mt-20 ">
    <Outlet />
   </div>
  );

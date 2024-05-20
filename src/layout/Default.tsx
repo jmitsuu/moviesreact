@@ -5,7 +5,7 @@ export function Default() {
  return (
   <div className=" relative   bg-white   overflow-hidden ">
    <Header />
-   <div className="flex  w-screen" >
+   <div className="flex  " >
     <MenuAside />
     <App />
    </div>

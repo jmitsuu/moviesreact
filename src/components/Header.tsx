@@ -21,13 +21,6 @@ export function Header() {
      </div>
     </div>
 
-    <div className="flex items-center gap-2">
-     <div>
-      <h3 className="text-xs text-gray-400">Hello</h3>
-      <h1 className="text-gray-200">Joe Doe</h1>
-     </div>
-     <div className="h-10 w-10 rounded-full bg-red-300"></div>
-    </div>
    </header>
   </main>
  );
