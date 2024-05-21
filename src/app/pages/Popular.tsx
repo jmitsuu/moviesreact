@@ -15,7 +15,7 @@ export function Popular() {
    
    },[movies]);
  if (isLoading) {
-  return <div>carregando...</div>;
+  return <div className="">carregando...</div>;
  }
 
 

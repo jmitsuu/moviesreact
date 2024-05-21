@@ -15,7 +15,7 @@ export function PlayingNow() {
    
    },[movies]);
  if (isLoading) {
-  return <div>carregando...</div>;
+  return <div className="">carregando...</div>;
  }
  if (!data) return;
  const fetchMoreData = () => {
