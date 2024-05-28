@@ -1,6 +1,7 @@
 import { FetchPlayingNow } from "@/api/movies/FetchPlayingNow";
 import { Title } from "@/components/Title";
 import { CardMovie } from "@/components/movie/CardMovie";
+import { SkeletonMovie } from "@/components/movie/SkeletonMovie";
 import { LayoutCards } from "@/layout/LayoutCards";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -8,27 +9,28 @@ export function PlayingNow() {
  const { movies, isLoading, page, refetch, setPage } = FetchPlayingNow();
  const [data, setData] = useState<any>([]);
  useEffect(() => {
-  if(!movies) return;
-  setTimeout(()=>{
-    setData(movies.results);
-  },150)
-   
-   },[movies]);
+  if (!movies) return;
+  setTimeout(() => {
+   setData(movies.results);
+  }, 350);
+ }, [movies]);
  if (isLoading) {
-  return <div className="">carregando...</div>;
+  return (
+   <div className="flex flex-wrap gap-10">
+    <SkeletonMovie />
+   </div>
+  );
  }
  if (!data) return;
  const fetchMoreData = () => {
-
   setTimeout(() => {
-    refetch()
+   refetch();
   }, 1500);
   setPage(page + 1);
   setData((state: TypeMovie[]) => state.concat(movies.results));
-
  };
 
-console.log("movies")
+ console.log("movies");
  return (
   <div>
    <Title
@@ -36,11 +38,15 @@ console.log("movies")
     description="Encontre os titulos que estão em alta pela comunidade"
    />
 
-<InfiniteScroll
+   <InfiniteScroll
     dataLength={data.length}
     next={fetchMoreData}
     hasMore={true}
-    loader={<h4>Loading...</h4>}
+    loader={
+     <div className="flex flex-wrap gap-10">
+      <SkeletonMovie />
+     </div>
+    }
    >
     <LayoutCards>
      {data?.map((film: TypeMovie) => {

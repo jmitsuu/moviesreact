@@ -20,7 +20,7 @@ export function PageReview() {
  const { response, refetch } = FetchReview(`${id}`);
 
  if (isLoading) {
-  return <div>carregando</div>;
+  return <div className="text-2xl animate-pulse"> carregando...</div>;
  }
 
  const { lists }: any = useGetDetails(search);
