@@ -1,6 +1,5 @@
 
 export function useGroupByTitle(array:any){
-  const newArray = array.sort((a:{vote:number},b:{vote:number})=> b.vote - a.vote);
   return array.reduce((acc:any, val:{title:string, vote:number}) =>{
     const title = val.title;
     if(!acc[title]){

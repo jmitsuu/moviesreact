@@ -1,5 +1,6 @@
-import { useAvaliationStars } from "@/hooks/useAvaliationStars";
+
 import { Progress } from "../ui/progress";
+import { utilStars } from "@/utils/utilStars";
 
 interface typeBar {
   total:any
@@ -20,7 +21,7 @@ if(total.includes("Não existem dados para retornar")) return <div>Sem estrelas 
      <div className="flex items-center gap-2 justify-between">
      {" "}
      <span className="text-yellow-500 flex  ">
-      {useAvaliationStars(5)}
+      {utilStars(5)}
      </span>{" "}
      <Progress value={100} className="h-2 w-44 " />{" "}
      <h1 className="text-center text-xs font-bold">({five.length}) reviews</h1>
@@ -31,7 +32,7 @@ if(total.includes("Não existem dados para retornar")) return <div>Sem estrelas 
      <div className="flex items-center gap-2 justify-between">
      {" "}
      <span className="text-yellow-500 flex  ">
-      {useAvaliationStars(4)}
+      {utilStars(4)}
      </span>{" "}
      <Progress value={50} className="h-2  w-44  " />{" "}
      <h1 className="text-center text-xs font-bold">({four.length}) reviews</h1>
@@ -42,7 +43,7 @@ if(total.includes("Não existem dados para retornar")) return <div>Sem estrelas 
      <div className="flex items-center gap-2 justify-between">
      {" "}
      <span className="text-yellow-500 flex  ">
-      {useAvaliationStars(3)}
+      {utilStars(3)}
      </span>{" "}
      <Progress value={30} className="h-2 w-44  " />{" "}
      <h1 className="text-center text-xs font-bold">({three.length}) reviews</h1>
@@ -54,7 +55,7 @@ if(total.includes("Não existem dados para retornar")) return <div>Sem estrelas 
      <div className="flex items-center gap-2 justify-between">
      {" "}
      <span className="text-yellow-500 flex  ">
-      {useAvaliationStars(2)}
+      {utilStars(2)}
      </span>{" "}
      <Progress value={20} className="h-2 w-44  " />{" "}
      <h1 className="text-center text-xs font-bold">({two.length}) reviews</h1>
@@ -66,7 +67,7 @@ if(total.includes("Não existem dados para retornar")) return <div>Sem estrelas 
      <div className="flex items-center gap-2 justify-between">
      {" "}
      <span className="text-yellow-500 flex  ">
-      {useAvaliationStars(1)}
+      {utilStars(1)}
      </span>{" "}
      <Progress value={10} className="h-2  w-44 " />{" "}
      <h1 className="text-center text-xs font-bold">({one.length}) reviews</h1>

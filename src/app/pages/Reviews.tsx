@@ -15,7 +15,7 @@ export function Reviews() {
 const groupArray = Object.values(useGroupByTitle(reviews.dados));
 const onHundred = groupArray.slice(0,100)
 
- return <div className=" mt-10   container  gap-3  ">
+ return <div className=" mt-10   container  gap-3 container xl:ml-16 ">
    <h1 className="text-7xl text-center  mb-20  uppercase font-bold">Top #100 Reviews</h1>
 
 

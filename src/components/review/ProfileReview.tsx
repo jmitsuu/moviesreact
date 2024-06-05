@@ -1,5 +1,6 @@
-import { useAvaliationStars } from "@/hooks/useAvaliationStars";
-import { useDateConverter } from "@/hooks/useDateConverter";
+
+import { utilDateConverter } from "@/utils/utilDateConverter";
+import { utilStars } from "@/utils/utilStars";
 interface typeReview {
  date: string;
  vote: number;
@@ -17,7 +18,7 @@ export function ProfileReview({ date, vote, comment }: typeReview) {
      <div className="flex items-center  gap-x-2">
       <span className="text-xs  font-bold"> {vote.toFixed(1)}</span>
       <span className="text-yellow-500 flex text-md">
-       {useAvaliationStars(vote)}
+       {utilStars(vote)}
       </span>{" "}
      </div>
     </div>
@@ -28,7 +29,7 @@ export function ProfileReview({ date, vote, comment }: typeReview) {
      <div className=" flex mt-3    items-center mb-3 border-t pt-1 ">
       {" "}
       <h2 className="text-gray-500 font-bold text-[0.8rem] border-b">
-       {useDateConverter(date)}
+       {utilDateConverter(date)}
       </h2>
      </div>
     </div>

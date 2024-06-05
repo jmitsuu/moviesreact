@@ -6,8 +6,8 @@ import { ProfileReview } from "@/components/review/ProfileReview";
 import { ModalComments } from "@/components/review/ModalComments";
 import { BarProgressAvaliation } from "@/components/review/BarProgressAvaliation";
 import { FindMovie } from "@/api/movies/FindMovie";
-import { useFilterVotes } from "@/hooks/useFilterVotes";
-import { useRemoveSpace } from "@/hooks/useRemoveSpace";
+import { utilFilterVotes } from "@/utils/utilFilterVotes";
+import { utilRemoveSpace } from "@/utils/utilRemoveSpace";
 
 const urlImage = "https://image.tmdb.org/t/p/original";
 
@@ -25,7 +25,7 @@ export function PageReview() {
 
  const { lists }: any = useGetDetails(search);
  const findItem = lists.find(
-  (item: { title: string }) => useRemoveSpace(item.title) === id
+  (item: { title: string }) => utilRemoveSpace(item.title) === id
  );
 
  if (isLoading || !response) {
@@ -35,7 +35,10 @@ export function PageReview() {
  const { dados } = response;
  const url = JSON.stringify(urlImage + findItem.backdrop_path);
  return (
-  <div className="w-screen container  min-h-full bg-[#ddd8e1] rounded-md p-5 ">
+  <main className="w-screen container xl:ml-16">
+
+
+  <div className="h-full   bg-[#ddd8e1] rounded-md p-5 ">
    <div
     style={{ backgroundImage: `url(${url})` }}
     className={` w-full flex  justify-between bg-black bg-cover p-10 rounded-md"
@@ -53,7 +56,7 @@ export function PageReview() {
      <div>
       <div className="flex gap-4 text-xs font-bold mt-4 ">
        <h1 className="flex items-center">
-        {(useFilterVotes(dados) / dados.length).toFixed(1)} -{" "}
+        {(utilFilterVotes(dados) / dados.length).toFixed(1)} -{" "}
         <IoStar className="text-yellow-500" />
        </h1>{" "}
        {dados.includes("Não existem dados para retornar") ? (
@@ -101,7 +104,7 @@ export function PageReview() {
      {dados.includes("Não existem dados para retornar") ? (
       <div className="w-full mt-10 text-center  p-20">
        <h1 className="">Não há comentarios até o momento</h1>
-       <p className="cursor-pointer">clique aqui e seja o primeiro :)</p>
+    
       </div>
      ) : (
       <>
@@ -120,5 +123,6 @@ export function PageReview() {
     </div>
    </div>
   </div>
+  </main>
  );
 }

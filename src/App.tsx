@@ -1,17 +1,14 @@
-import { Outlet, useLocation } from "react-router-dom";
 import "./index.css";
-import { useLayoutEffect } from "react";
+import { Route } from "./routes/Route";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
-  const location = useLocation();
-
-  useLayoutEffect(() => {
-   window.scrollTo(0, 0);
-  }, [location.pathname]);
+  const queryClient = new QueryClient({});
  return (
-  <div className=" items-center flex flex-col px-10     mt-20 ">
-   <Outlet />
-  </div>
+  <QueryClientProvider client={queryClient}>
+   <Route />
+  </QueryClientProvider>
+
  );
 }
 

@@ -30,14 +30,14 @@ const listMenu = [
 
 export function MenuAside() {
  return (
-  <aside className="min-h-screen min-w-44 p-2 px-4 bg-[#322d38]">
+  <aside className="min-h-screen  min-w-44 p-2 px-4 bg-[#322d38]">
     <div className="fixed">
     {listMenu.map((el: any) => {
     return (
       <div    key={el.title} className="w-full bg-transparent">
           <Link
           
-      className="flex text-gray-200 p-2 items-center gap-2 my-8 rounded hover:shadow-lg hover:shadow-red-500 shadow-b-2 shadow-r-[3px] -shadow-spread-2"
+      className="flex text-gray-200 p-2 items-center gap-2 my-8 rounded hover:shadow-lg -shadow-spread-2"
    
       to={el.route}
       
