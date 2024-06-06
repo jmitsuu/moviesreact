@@ -10,7 +10,7 @@ export function ProfileReview({ date, vote, comment }: typeReview) {
     <div className="mt-5  p-4 rounded-md border  shadow  ">
       <div className="flex items-center gap-2  ">
         <div className="h-10 w-10 rounded-full ">
-          <img src={'../src/assets/images/user.png'} />
+          <img src="http://yourreviews.app.jairo3478.c35.integrator.host/images/user.png" />
         </div>
         <div className="border-r-2 pr-4 w-32">
           <h1 className="text-xl mb-1">Anonimo</h1>

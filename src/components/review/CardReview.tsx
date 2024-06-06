@@ -18,13 +18,13 @@ export function CardReview({
   backdrop,
   id,
 }: typeCardReview) {
-  const urlImage = 'https://image.tmdb.org/t/p/w500'
+  const urlImage = 'https://image.tmdb.org/t/p/original'
   const url = urlImage + backdrop
   return (
     <Link to={`/pagereview/${utilRemoveSpace(`${id}`)}`}>
       <div
         style={{ backgroundImage: `url(${url}) ` }}
-        className="flex cursor-pointer bg-center  hover:shadow-blue-800 shadow-md transition duration-500 h-20 mb-1 bg-black rounded-md "
+        className="flex cursor-pointer  bg-cover hover:shadow-gray-600 shadow-md transition duration-500 h-20 mb-1 bg-black rounded-md "
       >
         <div className="w-screen h-full bg-black/50 flex items-center justify-between px-10 rounded-md">
           <h1 className="text-gray-50 text-4xl m-1">#{listTop}</h1>

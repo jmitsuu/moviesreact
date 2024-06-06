@@ -1,4 +1,5 @@
 import { FetchAll } from '@/api/reviews/FetchAll'
+import { Spinner } from '@/components/Spinner'
 import { CardReview } from '@/components/review/CardReview'
 import { useGroupByTitle } from '@/hooks/review/useGroupByTItle'
 
@@ -6,7 +7,9 @@ export function Reviews() {
   const { reviews, isLoading } = FetchAll()
 
   if (isLoading) {
-    return <div>Loading....</div>
+    return <div>
+      <Spinner />
+    </div>
   }
 
   const groupArray = Object.values(useGroupByTitle(reviews.dados))
@@ -14,7 +17,7 @@ export function Reviews() {
 
   return (
     <div className=" mt-10   container  gap-3  xl:ml-16 ">
-      <h1 className="text-7xl text-center  mb-20  uppercase font-bold">
+      <h1 className="text-8xl text-center text-gray-200  mb-20  uppercase font-bold">
         Top #100 Reviews
       </h1>
 
