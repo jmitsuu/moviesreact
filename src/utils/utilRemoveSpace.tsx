@@ -1,3 +1,6 @@
-export function utilRemoveSpace(param:string) {
-  return param.replace(/\s+/g, '-').replace(/[.:()]/g, '').toLowerCase()
-  }
+export function utilRemoveSpace(param: string) {
+  return param
+    .replace(/\s+/g, '-')
+    .replace(/[.:()]/g, '')
+    .toLowerCase()
+}
