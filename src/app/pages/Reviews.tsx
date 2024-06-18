@@ -11,18 +11,23 @@ export function Reviews() {
       <Spinner />
     </div>
   }
-
-  const groupArray = Object.values(useGroupByTitle(reviews.dados))
-  const onHundred = groupArray.slice(0, 100)
+  interface Review {
+    backdrop_path: string;
+    title: string;
+    totalVotes: number;
+    totalTitles: string;
+  }
+  const groupArray: Review[] = Object.values(useGroupByTitle(reviews.dados))
+  const onHundred = groupArray.slice(0, 10)
 
   return (
     <div className=" mt-10   container  gap-3  xl:ml-16 ">
       <h1 className="text-8xl text-center text-gray-200  mb-20  uppercase font-bold">
-        Top #100 Reviews
+        Top #10 Reviews
       </h1>
 
       <div className="  ">
-        {onHundred.map((item: any, index) => {
+        {onHundred.map((item, index) => {
           return (
             <CardReview
               key={index}

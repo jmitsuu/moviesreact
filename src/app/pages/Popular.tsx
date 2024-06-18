@@ -24,9 +24,8 @@ export function Popular() {
 
   if (!data) return
   const fetchMoreData = () => {
-    setTimeout(() => {
-      refetch()
-    }, 1500)
+  
+    refetch()
     setPage(page + 1)
     setData((state: TypeMovie[]) => state.concat(movies.results))
   }
@@ -42,6 +41,7 @@ export function Popular() {
         dataLength={data.length}
         next={fetchMoreData}
         hasMore={true}
+
         loader={
           <div className="flex flex-wrap gap-10">
             <SkeletonMovie />
