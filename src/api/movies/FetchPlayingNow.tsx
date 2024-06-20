@@ -13,7 +13,7 @@ export function FetchPlayingNow() {
  } = useQuery({
   queryKey: ["playing"],
   queryFn: async () => {
-   const { data } = await instance.get(`/movie/now_playing?language=pt-BR`, {
+   const { data } = await instance.get(`/movie/now_playing`, {
     params: {
      page: page,
     },

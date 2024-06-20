@@ -107,13 +107,16 @@ export function ModalComments({
             <div className="flex ">
               {SelectStars.map((el: any, index) => {
                 return (
-                  <>
+                  <div
+                  key={el+1}
+                  >
                     <IoStar
+                    
                       onClick={() => setStar(index + 1)}
                       className="flex cursor-pointer text-xl m-1 hover:border border-yellow-500 rounded text-yellow-500"
                       key={el}
                     />
-                  </>
+                  </div>
                 )
               })}
             </div>

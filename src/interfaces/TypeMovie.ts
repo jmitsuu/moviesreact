@@ -2,7 +2,7 @@ interface TypeMovie {
 adult?:boolean,
 backdrop_path?:string,
 genre_ids?:number[],
-id?:string,
+id?:string | number,
 idMovie?:string,
 original_language?:string,
 original_title?:string,

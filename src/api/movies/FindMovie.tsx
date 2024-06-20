@@ -2,7 +2,7 @@
 import { instance } from "@/http/UrlRequest";
 import { useQuery } from "@tanstack/react-query";
 
-export function FindMovie(titleParam:string) {
+export function FindMovie(movieId:string) {
 
 
  const {
@@ -11,10 +11,10 @@ export function FindMovie(titleParam:string) {
   refetch,
   isError,
  } = useQuery({
-  queryKey: ["search", titleParam],
+  queryKey: ["search", movieId],
   queryFn: async () => {
    const { data } = await instance.get(
-    `/search/movie?query=${titleParam}&language=pt-BR`
+    `/movie/${movieId}`
    );
    return data;
   },

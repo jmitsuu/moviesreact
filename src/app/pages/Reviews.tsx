@@ -16,9 +16,12 @@ export function Reviews() {
     title: string;
     totalVotes: number;
     totalTitles: string;
+    movieId:string,
   }
   const groupArray: Review[] = Object.values(useGroupByTitle(reviews.dados))
-  const onHundred = groupArray.slice(0, 10)
+  const onHundred = groupArray.slice(0, 10);
+const results =  onHundred.sort((a:any, b:any)=> b.totalVotes - a.totalVotes);
+
 
   return (
     <div className=" mt-10   container  gap-3  xl:ml-16 ">
@@ -27,7 +30,7 @@ export function Reviews() {
       </h1>
 
       <div className="  ">
-        {onHundred.map((item, index) => {
+        {results.map((item, index) => {
           return (
             <CardReview
               key={index}
@@ -36,7 +39,7 @@ export function Reviews() {
               title={item.title}
               vote={item.totalVotes}
               data={item.totalTitles}
-              id={item.title}
+              id={item.movieId}
             />
           )
         })}

@@ -7,37 +7,25 @@ import { ModalComments } from '@/components/review/ModalComments'
 import { BarProgressAvaliation } from '@/components/review/BarProgressAvaliation'
 import { FindMovie } from '@/api/movies/FindMovie'
 import { utilFilterVotes } from '@/utils/utilFilterVotes'
-import { utilRemoveSpace } from '@/utils/utilRemoveSpace'
 import { Spinner } from '@/components/Spinner'
 
 const urlImage = 'https://image.tmdb.org/t/p/original'
 
 export function PageReview() {
   const { id } = useParams()
-  console.log(id)
 
   const { search, isLoading } = FindMovie(`${id}`)
   const { response, refetch } = FetchReview(`${id}`)
 
-  if (isLoading) {
+  if (isLoading || !response) {
     return (
       <div className="text-2xl   ">
         <Spinner />
       </div>
     )
   }
-
-  const { lists }: any = useGetDetails(search)
-  const findItem = lists.find(
-    (item: { title: string }) => utilRemoveSpace(item.title) === id
-  )
-
-  if (isLoading || !response) {
-    return <div>carregando</div>
-  }
-
   const { dados } = response
-  const url = JSON.stringify(urlImage + findItem.backdrop_path)
+  const url = JSON.stringify(urlImage + search.backdrop_path)
   return (
     <main className="w-screen container xl:ml-16">
       <div className="h-full   bg-[#322d38] rounded-md p-5 ">
@@ -47,13 +35,13 @@ export function PageReview() {
      `}
         >
           <div className="w-[600px]   p-4 bg-black/50 rounded-md text-white">
-            <h1 className="font-bold text-4xl mb-10">{findItem.title}</h1>
+            <h1 className="font-bold text-4xl mb-10">{search.title}</h1>
             <div className="flex  gap-6">
               <img
-                src={urlImage + findItem.poster_path}
+                src={urlImage + search.poster_path}
                 className="h-72  rounded-md "
               />
-              <p className=" text-[0.9rem]">{findItem.overview}</p>
+              <p className=" text-[0.9rem]">{search.overview}</p>
             </div>
             <div>
               <div className="flex gap-4 text-xs font-bold mt-4 ">
@@ -68,7 +56,7 @@ export function PageReview() {
                 )}
               </div>
               <div className="flex gap-2 mt-5">
-                {findItem.genre_ids.map((el: { name: string }) => {
+                {search.genres.map((el: { name: string }) => {
                   return (
                     <h3 key={el.name} className=" font-semibold ">
                       {el.name}
@@ -91,10 +79,10 @@ export function PageReview() {
             <div className="float-right">
               <ModalComments
                 formatted_title={`${id}`}
-                id={findItem.id}
-                title={findItem.title}
-                poster_path={findItem.poster_path}
-                backdrop_path={findItem.backdrop_path}
+                id={search.id}
+                title={search.title}
+                poster_path={search.poster_path}
+                backdrop_path={search.backdrop_path}
                 refetch={refetch}
               />
             </div>

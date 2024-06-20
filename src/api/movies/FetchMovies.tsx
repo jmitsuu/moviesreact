@@ -13,7 +13,7 @@ export function FetchMovies() {
  } = useQuery({
   queryKey: ["movies"],
   queryFn: async () => {
-   const { data } = await instance.get(`/movie/popular?language=pt-BR`, {
+   const { data } = await instance.get(`/movie/popular`, {
     params: {
      page: page,
     },

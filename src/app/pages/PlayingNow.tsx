@@ -12,6 +12,7 @@ export function PlayingNow() {
     if (!movies) return
     setTimeout(() => {
       setData(movies.results)
+
     }, 350)
   }, [movies])
   if (isLoading) {
@@ -57,7 +58,7 @@ export function PlayingNow() {
                 release_date={film.release_date}
                 vote_average={film.vote_average}
                 genre_ids={film.genre_ids}
-                id={film.title}
+                id={film.id}
               />
             )
           })}
