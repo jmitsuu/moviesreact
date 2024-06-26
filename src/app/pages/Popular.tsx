@@ -14,13 +14,13 @@ export function Popular() {
       setData(movies.results)
     }, 350)
   }, [movies])
-  // if (isLoading) {
-  //   return (isLoading &&
-  //     <div className="flex flex-wrap gap-10">
-  //       <SkeletonMovie />
-  //     </div>
-  //   )
-  // }
+  if (isLoading) {
+    return (isLoading &&
+      <div className="flex flex-wrap gap-10">
+        <SkeletonMovie />
+      </div>
+    )
+  }
 
   if (!data) return
   const fetchMoreData = () => {

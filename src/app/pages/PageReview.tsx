@@ -8,6 +8,7 @@ import { BarProgressAvaliation } from '@/components/review/BarProgressAvaliation
 import { FindMovie } from '@/api/movies/FindMovie'
 import { utilFilterVotes } from '@/utils/utilFilterVotes'
 import { Spinner } from '@/components/Spinner'
+import { CtrlPagination } from '@/components/CtrlPagination'
 
 const urlImage = 'https://image.tmdb.org/t/p/original'
 
@@ -25,6 +26,7 @@ export function PageReview() {
     )
   }
   const { dados } = response
+
   const url = JSON.stringify(urlImage + search.backdrop_path)
   return (
     <main className="w-screen container xl:ml-16">
@@ -91,7 +93,7 @@ export function PageReview() {
             className={`w-full   flex flex-col border-b pb-4 p-2   mt-20`}
           ></div>
           <div
-            className={`w-full overflow-y-auto    flex flex-col border p-2 rounded-md mt-20 `}
+            className={`w-full max-h-[900px] overflow-y-auto    flex flex-col border p-2 rounded-md mt-20 `}
           >
             {dados.includes('Não existem dados para retornar') ? (
               <div className="w-full mt-10 text-center  p-20">
@@ -112,6 +114,7 @@ export function PageReview() {
               </>
             )}
           </div>
+          <CtrlPagination />
         </div>
       </div>
     </main>

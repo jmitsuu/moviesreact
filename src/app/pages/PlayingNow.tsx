@@ -15,13 +15,13 @@ export function PlayingNow() {
 
     }, 350)
   }, [movies])
-  // if (isLoading) {
-  //   return (
-  //     <div className="flex flex-wrap gap-10">
-  //       <SkeletonMovie />
-  //     </div>
-  //   )
-  // }
+  if (isLoading) {
+    return (
+      <div className="flex flex-wrap gap-10">
+        <SkeletonMovie />
+      </div>
+    )
+  }
   if (!data) return
   const fetchMoreData = () => {
     setTimeout(() => {
