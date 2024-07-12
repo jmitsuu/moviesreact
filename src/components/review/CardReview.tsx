@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 interface typeCardReview {
   title: string
   vote: number
-  data: any
+  data: number
   listTop: number
   backdrop: string
   id: string
@@ -38,7 +38,9 @@ export function CardReview({
             </div>
           </div>
           <div>
-            <h1 className="text-gray-100 text-xl">Reviews ({data})</h1>
+            <h1 className="text-gray-100 text-xl">
+              Reviews ({data})
+            </h1>
           </div>
         </div>
       </div>

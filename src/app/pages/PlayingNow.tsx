@@ -6,13 +6,13 @@ import { LayoutCards } from '@/layout/LayoutCards'
 import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 export function PlayingNow() {
-  const { movies, isLoading, page, refetch, setPage } = FetchPlayingNow()
+  const { movies, isLoading, page, refetch, setPage } =
+    FetchPlayingNow()
   const [data, setData] = useState<any>([])
   useEffect(() => {
     if (!movies) return
     setTimeout(() => {
       setData(movies.results)
-
     }, 350)
   }, [movies])
   if (isLoading) {
@@ -42,10 +42,12 @@ export function PlayingNow() {
         dataLength={data.length}
         next={fetchMoreData}
         hasMore={true}
-        loader={ isLoading &&
-          <div className="flex flex-wrap gap-10">
-            <SkeletonMovie />
-          </div>
+        loader={
+          isLoading && (
+            <div className="flex flex-wrap gap-10">
+              <SkeletonMovie />
+            </div>
+          )
         }
       >
         <LayoutCards>

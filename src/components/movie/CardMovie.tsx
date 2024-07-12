@@ -17,6 +17,7 @@ export function CardMovie({
           <img
             src={urlImage + poster_path}
             className="w-full h-72 rounded-md  cursor-pointer "
+            alt="poster"
           />
         </Link>
 
@@ -27,7 +28,9 @@ export function CardMovie({
           <div className="text-gray-200 text-xs mt-1">
             <h2>{release_date?.substring(0, 4)}</h2>
           </div>
-          <h1 className="text-gray-200 font-bold text-md mt-2 ">{title}</h1>
+          <h1 className="text-gray-200 font-bold text-md mt-2 ">
+            {title}
+          </h1>
         </div>
       </div>
     </>

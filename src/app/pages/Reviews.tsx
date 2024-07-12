@@ -7,21 +7,25 @@ export function Reviews() {
   const { reviews, isLoading } = FetchAll()
 
   if (isLoading) {
-    return <div>
-      <Spinner />
-    </div>
+    return (
+      <div>
+        <Spinner />
+      </div>
+    )
   }
   interface Review {
-    backdrop_path: string;
-    title: string;
-    totalVotes: number;
-    totalTitles: string;
-    movieId:string,
+    backdrop_path: string
+    title: string
+    totalVotes: number
+    totalTitles: string
+    movieId: string
   }
   const groupArray: Review[] = Object.values(useGroupByTitle(reviews.dados))
-  const onHundred = groupArray.slice(0, 10);
-const results =  onHundred.sort((a:any, b:any)=> b.totalVotes - a.totalVotes);
-
+  const onHundred = groupArray.slice(0, 10)
+  const results = onHundred.sort(
+    (a: { totalVotes: number }, b: { totalVotes: number }) =>
+      b.totalVotes - a.totalVotes,
+  )
 
   return (
     <div className=" mt-10   container  gap-3  xl:ml-16 ">

@@ -10,7 +10,7 @@ export function SkeletonMovie() {
         <div className="space-y-2">
           <Skeleton className="h-4  bg-gray-700" />
         </div>
-      </div>
+      </div>,
     )
   }
   return arrSkeleton

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 export function Popular() {
   const { movies, isLoading, page, refetch, setPage } = FetchMovies()
-  const [data, setData] = useState<any>([])
+  const [data, setData] = useState<TypeMovie[]>([])
   useEffect(() => {
     if (!movies) return
     setTimeout(() => {
@@ -15,19 +15,20 @@ export function Popular() {
     }, 350)
   }, [movies])
   if (isLoading) {
-    return (isLoading &&
-      <div className="flex flex-wrap gap-10">
-        <SkeletonMovie />
-      </div>
+    return (
+      isLoading && (
+        <div className="flex flex-wrap gap-10">
+          <SkeletonMovie />
+        </div>
+      )
     )
   }
 
   if (!data) return
   const fetchMoreData = () => {
-  
     refetch()
     setPage(page + 1)
-    setData((state: TypeMovie[]) => state.concat(movies.results))
+    setData((state) => state.concat(movies.results))
   }
 
   return (
@@ -41,7 +42,6 @@ export function Popular() {
         dataLength={data.length}
         next={fetchMoreData}
         hasMore={true}
-
         loader={
           <div className="flex flex-wrap gap-10">
             <SkeletonMovie />

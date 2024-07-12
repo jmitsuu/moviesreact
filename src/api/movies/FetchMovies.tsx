@@ -1,26 +1,26 @@
-import { instance } from "@/http/UrlRequest";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { instance } from '@/http/UrlRequest'
+import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 
 export function FetchMovies() {
- const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1)
 
- const {
-  data: movies,
-  isLoading,
-  refetch,
-  isError,
- } = useQuery({
-  queryKey: ["movies"],
-  queryFn: async () => {
-   const { data } = await instance.get(`/movie/popular`, {
-    params: {
-     page: page,
+  const {
+    data: movies,
+    isLoading,
+    refetch,
+    isError,
+  } = useQuery({
+    queryKey: ['movies'],
+    queryFn: async () => {
+      const { data } = await instance.get(`/movie/popular`, {
+        params: {
+          page: page,
+        },
+      })
+      return data
     },
-   });
-   return data;
-  },
- });
+  })
 
- return { movies, isLoading, isError, page, setPage, refetch };
+  return { movies, isLoading, isError, page, setPage, refetch }
 }

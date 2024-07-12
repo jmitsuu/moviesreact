@@ -1,4 +1,3 @@
-import { Header } from '@/components/Header'
 import { MenuAside } from '@/components/MenuAside'
 import { useLayoutEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
@@ -9,7 +8,6 @@ export function Default() {
   }, [location.pathname])
   return (
     <div className=" relative    bg-[#1f1f1f] w-screen   overflow-hidden ">
-      <Header />
       <div className="flex">
         <MenuAside />
         <div className=" px-10 pt-10 ">

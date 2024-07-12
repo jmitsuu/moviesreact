@@ -1,11 +1,9 @@
-import { Header } from '@/components/Header'
 import { MenuAside } from '@/components/MenuAside'
 import { PiSmileySad } from 'react-icons/pi'
 
 export function Error404() {
   return (
     <div className=" relative w-screen bg-[#ddd8e1]">
-      <Header />
       <div className="flex">
         <MenuAside />
         <div className="flex flex-col items-center text-black justify-center w-full ">

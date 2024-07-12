@@ -3,6 +3,7 @@ import { BiCameraMovie } from 'react-icons/bi'
 import { MdRateReview } from 'react-icons/md'
 import { TbDeviceAnalytics } from 'react-icons/tb'
 import { IoHomeOutline } from 'react-icons/io5'
+import { ReactElement } from 'react'
 
 const listMenu = [
   {
@@ -26,12 +27,16 @@ const listMenu = [
     icon: <MdRateReview />,
   },
 ]
-
+interface typeMenu {
+  route: string
+  title: string
+  icon: ReactElement
+}
 export function MenuAside() {
   return (
     <aside className="min-h-screen  min-w-44 p-2 px-4 bg-[#322d38]">
       <div className="fixed">
-        {listMenu.map((el: any) => {
+        {listMenu.map((el: typeMenu) => {
           return (
             <div key={el.title} className="w-full bg-transparent">
               <Link

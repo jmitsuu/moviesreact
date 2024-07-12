@@ -1,4 +1,3 @@
-import { useGetDetails } from '@/hooks/useGetDetails'
 import { useParams } from 'react-router-dom'
 import { IoStar } from 'react-icons/io5'
 import { FetchReview } from '@/api/reviews/FetchReview'
@@ -37,7 +36,9 @@ export function PageReview() {
      `}
         >
           <div className="w-[600px]   p-4 bg-black/50 rounded-md text-white">
-            <h1 className="font-bold text-4xl mb-10">{search.title}</h1>
+            <h1 className="font-bold text-4xl mb-10">
+              {search.title}
+            </h1>
             <div className="flex  gap-6">
               <img
                 src={urlImage + search.poster_path}
@@ -48,8 +49,8 @@ export function PageReview() {
             <div>
               <div className="flex gap-4 text-xs font-bold mt-4 ">
                 <h1 className="flex items-center">
-                  {(utilFilterVotes(dados) / dados.length).toFixed(1)} -{' '}
-                  <IoStar className="text-yellow-500" />
+                  {(utilFilterVotes(dados) / dados.length).toFixed(1)}{' '}
+                  - <IoStar className="text-yellow-500" />
                 </h1>{' '}
                 {dados.includes('Não existem dados para retornar') ? (
                   <h2> ((0) reviews)</h2>
@@ -71,13 +72,17 @@ export function PageReview() {
 
           <div className="bg-black/50 rounded-md text-white justify-center px-10  gap-10 p-8 flex flex-col">
             <h1>Avaliações</h1>
-            <BarProgressAvaliation total={dados || 'sem avaliações'} />
+            <BarProgressAvaliation
+              total={dados}
+            />
           </div>
         </div>
 
         <div className=" min-h-80 mt-20 bg-white p-10  rounded-md   transition duration-500">
           <div className=" w-full ">
-            <h1 className={`text-gray-700 uppercase text-4xl `}>Analises</h1>
+            <h1 className={`text-gray-700 uppercase text-4xl `}>
+              Analises
+            </h1>
             <div className="float-right">
               <ModalComments
                 formatted_title={`${id}`}
