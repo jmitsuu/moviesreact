@@ -2,13 +2,14 @@ import { FetchPlayingNow } from '@/api/movies/FetchPlayingNow'
 import { Title } from '@/components/Title'
 import { CardMovie } from '@/components/movie/CardMovie'
 import { SkeletonMovie } from '@/components/movie/SkeletonMovie'
+import { TypeMovie } from '@/interfaces/TypeMovie'
 import { LayoutCards } from '@/layout/LayoutCards'
 import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 export function PlayingNow() {
   const { movies, isLoading, page, refetch, setPage } =
     FetchPlayingNow()
-  const [data, setData] = useState<any>([])
+  const [data, setData] = useState<TypeMovie[]>([])
   useEffect(() => {
     if (!movies) return
     setTimeout(() => {
@@ -28,7 +29,7 @@ export function PlayingNow() {
       refetch()
     }, 1500)
     setPage(page + 1)
-    setData((state: TypeMovie[]) => state.concat(movies.results))
+    setData((state) => state.concat(movies.results))
   }
 
   return (

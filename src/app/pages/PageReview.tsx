@@ -11,11 +11,16 @@ import { CtrlPagination } from '@/components/CtrlPagination'
 
 const urlImage = 'https://image.tmdb.org/t/p/original'
 
+interface typeReview {
+  vote: number
+  description: string
+  createdAt: string
+}
 export function PageReview() {
   const { id } = useParams()
 
   const { search, isLoading } = FindMovie(`${id}`)
-  const { response, refetch } = FetchReview(`${id}`)
+  const { response } = FetchReview(`${id}`)
 
   if (isLoading || !response) {
     return (
@@ -28,8 +33,8 @@ export function PageReview() {
 
   const url = JSON.stringify(urlImage + search.backdrop_path)
   return (
-    <main className="w-screen container xl:ml-16">
-      <div className="h-full   bg-[#322d38] rounded-md p-5 ">
+    <section className="w-screen container mx-auto ">
+      <div className="h-full mt-20 rounded-md p-5 ">
         <div
           style={{ backgroundImage: `url(${url})` }}
           className={` w-full flex  justify-between bg-black bg-cover p-10 rounded-md"
@@ -43,13 +48,16 @@ export function PageReview() {
               <img
                 src={urlImage + search.poster_path}
                 className="h-72  rounded-md "
+                alt="poster"
               />
               <p className=" text-[0.9rem]">{search.overview}</p>
             </div>
             <div>
               <div className="flex gap-4 text-xs font-bold mt-4 ">
                 <h1 className="flex items-center">
-                  {(utilFilterVotes(dados) / dados.length).toFixed(1)}{' '}
+                  {(
+                    Number(utilFilterVotes(dados)) / dados.length
+                  ).toFixed(1)}{' '}
                   - <IoStar className="text-yellow-500" />
                 </h1>{' '}
                 {dados.includes('Não existem dados para retornar') ? (
@@ -72,9 +80,7 @@ export function PageReview() {
 
           <div className="bg-black/50 rounded-md text-white justify-center px-10  gap-10 p-8 flex flex-col">
             <h1>Avaliações</h1>
-            <BarProgressAvaliation
-              total={dados}
-            />
+            <BarProgressAvaliation total={dados} />
           </div>
         </div>
 
@@ -90,7 +96,7 @@ export function PageReview() {
                 title={search.title}
                 poster_path={search.poster_path}
                 backdrop_path={search.backdrop_path}
-                refetch={refetch}
+              
               />
             </div>
           </div>
@@ -106,7 +112,7 @@ export function PageReview() {
               </div>
             ) : (
               <>
-                {dados.map((profile: any) => {
+                {dados.map((profile: typeReview) => {
                   return (
                     <ProfileReview
                       key={profile.createdAt}
@@ -122,6 +128,6 @@ export function PageReview() {
           <CtrlPagination />
         </div>
       </div>
-    </main>
+    </section>
   )
 }

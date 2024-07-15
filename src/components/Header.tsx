@@ -1,24 +1,54 @@
-import { Input } from '@/components/ui/input'
-import { SlMagnifier } from 'react-icons/sl'
+import { Link } from 'react-router-dom'
+import { BiCameraMovie } from 'react-icons/bi'
+import { MdRateReview } from 'react-icons/md'
+import { TbDeviceAnalytics } from 'react-icons/tb'
+import { IoHomeOutline } from 'react-icons/io5'
+import { ReactElement } from 'react'
+
+const listMenu = [
+  {
+    route: '/',
+    title: 'Home',
+    icon: <IoHomeOutline />,
+  },
+  {
+    route: '/popular',
+    title: 'Popular',
+    icon: <BiCameraMovie />,
+  },
+  {
+    route: '/onthetop',
+    title: 'Em Alta',
+    icon: <TbDeviceAnalytics />,
+  },
+  {
+    route: '/reviews',
+    title: 'Reviews',
+    icon: <MdRateReview />,
+  },
+]
+interface typeMenu {
+  route: string
+  title: string
+  icon: ReactElement
+}
 export function Header() {
   return (
-    <main className="relative w-full h-20">
-      <header className="w-full h-20 fixed  bg-[#242029] z-50 flex items-center justify-between px-10">
-        <div className="gap-10  flex items-center">
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-xl text-gray-200 font-bold bg-black uppercase border-2 p-2 rounded  border-red-500 shadow-red-500 shadow-md">
-              <h2 className="  ">Reviews</h2>
+    <aside className=" w-full h-24 p-2 px-4 bg-black">
+      <div className="flex h-full justify-center items-center">
+        {listMenu.map((el: typeMenu) => {
+          return (
+            <div key={el.title} className="bg-transparent">
+              <Link
+                className="flex text-gray-200 p-2 items-center gap-2  rounded hover:shadow-lg -shadow-spread-2"
+                to={el.route}
+              >
+                {el.icon} {el.title}
+              </Link>
             </div>
-          </div>
-          <div className=" relative">
-            <SlMagnifier className="absolute top-2 -right-3 " />
-            <Input
-              className="h-7 bg-transparent ml-5 border-none  outline-none focus-visible:bg-black "
-              placeholder="Pesquise aqui..."
-            />
-          </div>
-        </div>
-      </header>
-    </main>
+          )
+        })}
+      </div>
+    </aside>
   )
 }

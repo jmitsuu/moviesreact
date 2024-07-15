@@ -1,6 +1,5 @@
 import { Popular } from '@/app/pages/Popular'
 import { PlayingNow } from '@/app/pages/PlayingNow'
-import { Reviews } from '@/app/pages/Reviews'
 import { Default } from '@/layout/Default'
 import { Error404 } from '@/layout/Error404'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
@@ -26,10 +25,7 @@ export function Route() {
           path: 'pagereview/:id',
           element: <PageReview />,
         },
-        {
-          path: '/reviews',
-          element: <Reviews />,
-        },
+
         {
           path: '/onthetop',
           element: <PlayingNow />,

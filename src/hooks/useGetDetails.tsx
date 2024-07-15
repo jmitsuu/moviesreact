@@ -1,11 +1,18 @@
 import { generes } from '@/helpers/Generes'
-
-export function useGetDetails(param: any) {
+import { TypeMovie } from '@/interfaces/TypeMovie'
+interface genreItem{
+  genres:{
+    id:number[];
+    
+  }
+  
+}
+export function useGetDetails(param: genreItem) {
   if (!param) return
   // console.log(param.genres)
-  const filterIds = param.genres
-  const lists = filterIds.map((item: any) => {
-    console.log(item)
+  const filterIds = param.genres 
+  const lists = filterIds.map((item:genreItem) => {
+
     const getGeneres = generes.filter((ids) => {
   
       if (item.genres.id.includes(ids.id)) {

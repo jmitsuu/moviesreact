@@ -22,16 +22,18 @@ type Inputs = {
 interface typeComments {
   formatted_title: string
   title: string
-  id: string
+  id?: string
   poster_path: string
   backdrop_path: string
-  refetch?: any
+  movieId?: string
+  vote?: number
+  description?: string
 }
 
 export function ModalComments({
   id,
   title,
-  refetch,
+
   formatted_title,
   poster_path,
   backdrop_path,
@@ -45,9 +47,11 @@ export function ModalComments({
     formState: { errors },
   } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = ({ inputDescription }: Inputs) => {
+  const onSubmit: SubmitHandler<Inputs> = ({
+    inputDescription,
+  }: Inputs) => {
     if (star === 0) return
-    const newTodo = {
+    const newTodo: typeComments = {
       formatted_title: formatted_title,
       poster_path: poster_path,
       backdrop_path: backdrop_path,
@@ -56,15 +60,14 @@ export function ModalComments({
       vote: star,
       description: inputDescription,
     }
-    mutation.mutate(JSON.stringify(newTodo))
+    mutation.mutate(newTodo)
   }
   const mutation = useMutation({
-    mutationFn: (newTodo: any) => {
+    mutationFn: (newTodo: typeComments) => {
       return review.post('/movie', newTodo)
     },
     onSuccess: () => {
       setCtrlComents(false)
-      refetch()
     },
   })
 
@@ -72,7 +75,10 @@ export function ModalComments({
     <>
       <Dialog open={ctrlComments}>
         <DialogTrigger asChild>
-          <Button variant="outline" onClick={() => setCtrlComents(true)}>
+          <Button
+            variant="outline"
+            onClick={() => setCtrlComents(true)}
+          >
             Novo Comentario
           </Button>
         </DialogTrigger>
@@ -82,10 +88,12 @@ export function ModalComments({
             onClick={() => setCtrlComents(false)}
           />
           <DialogHeader className="mt-10">
-            <DialogTitle className="mb-8">Novo Comentario</DialogTitle>
+            <DialogTitle className="mb-8">
+              Novo Comentario
+            </DialogTitle>
             <DialogDescription>
-              Descreva a sua experiencia em relação ao filme, mas lembre-se de
-              ser cordial :)
+              Descreva a sua experiencia em relação ao filme, mas
+              lembre-se de ser cordial :)
             </DialogDescription>
           </DialogHeader>
           <form
@@ -105,13 +113,10 @@ export function ModalComments({
               <span>Quantas estrelas esse filme merece?</span>
             )}
             <div className="flex ">
-              {SelectStars.map((el: any, index) => {
+              {SelectStars.map((el: number, index) => {
                 return (
-                  <div
-                  key={el+1}
-                  >
+                  <div key={el + 1}>
                     <IoStar
-                    
                       onClick={() => setStar(index + 1)}
                       className="flex cursor-pointer text-xl m-1 hover:border border-yellow-500 rounded text-yellow-500"
                       key={el}
@@ -120,7 +125,9 @@ export function ModalComments({
                 )
               })}
             </div>
-            {star === 0 && <span className="text-xs">Campo Obrigatório</span>}
+            {star === 0 && (
+              <span className="text-xs">Campo Obrigatório</span>
+            )}
             <Button className="w-44 m-auto">Enviar</Button>
           </form>
         </DialogContent>
