@@ -1,5 +1,4 @@
 import { utilRemoveSpace } from '@/utils/utilRemoveSpace'
-import { utilStars } from '@/utils/utilStars'
 import { Link } from 'react-router-dom'
 
 interface typeCardReview {
@@ -18,7 +17,6 @@ export function ListReview({
 
   id,
 }: typeCardReview) {
- 
   return (
     <Link to={`/pagereview/${utilRemoveSpace(`${id}`)}`}>
       <div className="flex cursor-pointer  bg-cover hover:shadow-gray-600 shadow-md transition duration-500 mb-1  rounded-md ">
@@ -31,9 +29,7 @@ export function ListReview({
             </h2>
           </div>
           <div>
-            <h1 className="text-gray-100 ">
-              Reviews ({data})
-            </h1>
+            <h1 className="text-gray-100 ">Reviews ({data})</h1>
           </div>
         </div>
       </div>

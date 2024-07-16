@@ -1,3 +1,5 @@
+
+
 interface ArrayReview {
   title: string;
   vote: number;
@@ -13,6 +15,7 @@ interface Accumulator {
 }
 
 export function useGroupByTitle(array: ArrayReview[]) {
+
   return array.reduce((acc: Accumulator, val: ArrayReview) => {
     const title = val.title;
     if (!acc[title]) {

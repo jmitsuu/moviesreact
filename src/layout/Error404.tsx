@@ -9,7 +9,7 @@ export function Error404() {
         <div className="flex flex-col items-center text-black justify-center w-full ">
           <h1 className="text-6xl mb-10">Desculpe!</h1>
           <PiSmileySad className="text-6xl" />
-          <h1>#404 pagina não encontrada.</h1>
+          <h1>Solicitação não foi atendida.</h1>
           <p>Aguarde um momento...</p>
         </div>
       </div>
