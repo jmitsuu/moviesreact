@@ -36,16 +36,16 @@ export function Home() {
             O top 10 dos filmes mais comentados.
           </h2>
         </div>
-        <div className="flex w-96 h-96 ">
+        <div className="flex flex-row-reverse w-96 h-96 justify-center ml-64 transition-all mt-10">
           {filteredReviews.map((item, index) => {
             return (
               <div key={index} className='mx-auto w-[900px] '>
-                <CardReview backdrop_path={item.backdrop_path} />
+                <CardReview backdrop_path={item.backdrop_path} index={index + 1}/>
               </div>
             )
           })}
         </div>
-        <div className="xl:w-[900px] mx-auto  border border-purple-700/20 p-2 m-20 rounded-md bg-gradient-to-tr from-purple-950 via-black to-blue-950 ">
+        <div className="xl:w-[900px] mx-auto  border border-purple-700/20 p-2 m-5 rounded-md bg-gradient-to-tr from-purple-950 via-black to-blue-950 ">
           {filteredReviews.map((item, index) => {
             return (
               <ListReview
