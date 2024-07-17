@@ -1,24 +1,22 @@
-import { utilRemoveSpace } from '@/utils/utilRemoveSpace'
 import { Link } from 'react-router-dom'
 
 interface typeCardReview {
   title: string
   vote: number
-  data: string
+  data: number
   listTop: number
-  backdrop: string
-  id: string
+  backdrop?: string
+  id: number
 }
 export function ListReview({
   title,
   vote,
   data,
   listTop,
-
   id,
 }: typeCardReview) {
   return (
-    <Link to={`/pagereview/${utilRemoveSpace(`${id}`)}`}>
+    <Link to={`/pagereview/${id}`}>
       <div className="flex cursor-pointer  bg-cover hover:shadow-gray-600 shadow-md transition duration-500 mb-1  rounded-md ">
         <div className="w-screen h-full flex items-center justify-between px-10 rounded-md">
           <h1 className="text-gray-50">#{listTop}</h1>

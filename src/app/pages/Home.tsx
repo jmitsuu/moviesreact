@@ -2,6 +2,7 @@ import { FetchAll } from '@/api/reviews/FetchAll'
 import { CardReview } from '@/components/review/CardReview'
 import { ListReview } from '@/components/review/ListReview'
 import { Spinner } from '@/components/Spinner'
+import { useState } from 'react'
 interface Review {
   backdrop_path?: string
   title: string
@@ -25,7 +26,7 @@ interface Accumulator {
 }
 export function Home() {
   const { reviews, isLoading } = FetchAll()
-
+  const [isHovered, setIsHovered] = useState(false)
   if (isLoading) {
     return (
       <div className="w-full h-full flex justify-center items-center mt-40">
@@ -52,10 +53,9 @@ export function Home() {
     },
     {},
   )
-  const newArrayFiltered: Review[] = Object.values(
-    filteredReviews,
-  ).slice(0, 10)
-  console.log(filteredReviews)
+  const newArrayFiltered: Review[] = filteredReviews;
+  const arrayObjects = Object.values(newArrayFiltered).slice(0,10)
+
   return (
     <section className="w-screen">
       <div className="h-full w-full container flex flex-col justify-center mx-auto rounded-xl ">
@@ -67,10 +67,17 @@ export function Home() {
             O top 10 dos filmes mais comentados.
           </h2>
         </div>
-        <div className="flex flex-row-reverse w-96 h-96 justify-center ml-64 transition-all mt-10  backdrop-blur-md">
-          {newArrayFiltered.map((item, index) => {
+        <div className="flex flex-row-reverse w-96 h-96 justify-center ml-64 transition-all mt-10  ">
+          {arrayObjects.map((item, index) => {
             return (
-              <div key={index} className="mx-auto w-[900px]  ">
+              <div key={index} className={`mx-auto w-[900px] last:blur-0   ${!isHovered ? 'blur-sm hover:z-50 ' : 'hover:blur-0 hover:z-50 last:blur-sm '}`}
+              onMouseEnter={() => {
+                setIsHovered(true)
+              }}
+              onMouseLeave={() => {
+                setIsHovered(false)
+              }}
+              >
                 <CardReview
                   backdrop_path={item.backdrop_path}
                   totalVotes={
@@ -83,16 +90,15 @@ export function Home() {
           })}
         </div>
         <div className="xl:w-[900px] mx-auto  border border-purple-700/20 p-2 rounded-md bg-gradient-to-tr from-purple-950 via-black to-blue-950 ">
-          {newArrayFiltered.map((item, index) => {
+          {arrayObjects.map((item, index) => {
             return (
               <ListReview
                 key={index}
                 listTop={index + 1}
-                backdrop={item.backdrop_path}
                 title={item.title}
                 vote={item.totalVotes}
                 data={item.totalTitles}
-                id={item.movieId}
+                id={Number(item.movieId)}
               />
             )
           })}
