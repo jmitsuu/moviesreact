@@ -1,5 +1,5 @@
 import { generes } from '@/helpers/Generes'
-import { TypeMovie } from '@/interfaces/TypeMovie'
+
 interface genreItem{
   genres:{
     id:number[];

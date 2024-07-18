@@ -11,20 +11,9 @@ export function Popular() {
   const [data, setData] = useState<TypeMovie[]>([])
   useEffect(() => {
     if (!movies) return
-    setTimeout(() => {
-      setData(movies.results)
-    }, 350)
+    setTimeout(() => {}, 150)
+    setData(movies.results)
   }, [movies])
-  // if (isLoading) {
-  //   return (
-  //     isLoading && (
-  //       <div className="flex flex-wrap gap-10">
-  //         <SkeletonMovie />
-  //       </div>
-  //     )
-  //   )
-  // }
-
   if (!data) return
   const fetchMoreData = () => {
     refetch()
@@ -33,7 +22,7 @@ export function Popular() {
   }
 
   return (
-    <div className='md:pl-20 mt-10'>
+    <div className="md:pl-20 mt-10">
       <Title
         title="Filmes"
         description="Encontre os titulos que estão em destaque"
@@ -51,7 +40,10 @@ export function Popular() {
           )
         }
       >
-        <LayoutCards>
+        <LayoutCards
+          title="Filmes"
+          description="encontre os titulos que estão em destaque"
+        >
           {data?.map((film: TypeMovie) => {
             return (
               <CardMovie

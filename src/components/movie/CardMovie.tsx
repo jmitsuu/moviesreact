@@ -1,4 +1,5 @@
-import { utilRemoveSpace } from '@/utils/utilRemoveSpace'
+
+import { TypeMovie } from '@/interfaces/TypeMovie'
 import { Link } from 'react-router-dom'
 
 const urlImage = 'https://image.tmdb.org/t/p/w500'
@@ -13,7 +14,7 @@ export function CardMovie({
   return (
     <>
       <div className="w-44  min-h-72 relative flex flex-col  hover:scale-105  scale-100 transition duration-500 ">
-        <Link to={`/pagereview/${utilRemoveSpace(`${id}`)}`}>
+        <Link to={`/pagereview/${id}`}>
           <img
             src={urlImage + poster_path}
             className="w-full h-72 rounded-md  cursor-pointer "

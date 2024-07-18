@@ -12,7 +12,7 @@ export function ProfileReview({ date, vote, comment }: typeReview) {
         <div className="h-10 w-10 rounded-full ">
           <img
             src="http://yourreviews.app.jairo3478.c35.integrator.host/images/user.png"
-            alt="backdrop"
+            alt="userPhoto"
           />
         </div>
         <div className="border-r-2 pr-4 w-32">

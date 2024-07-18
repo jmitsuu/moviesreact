@@ -15,11 +15,9 @@ export function CardReview({
   totalVotes,
 }: Review) {
   const [isHovered, setIsHovered] = useState(false)
-  const urlImage = 'https://image.tmdb.org/t/p/original'
+  const urlImage = 'https://image.tmdb.org/t/p/w500'
   const url = urlImage + backdrop_path
   if (url.includes('null')) return
-  console.log(url)
-
   return (
     <button
       className={` absolute box-content transition-all m-auto `}

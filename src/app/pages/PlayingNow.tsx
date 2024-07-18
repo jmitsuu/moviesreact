@@ -51,7 +51,10 @@ export function PlayingNow() {
           )
         }
       >
-        <LayoutCards>
+        <LayoutCards
+          title="Em Alta"
+          description="Encontre os titulos que estão em alta pela comunidade"
+        >
           {data?.map((film: TypeMovie) => {
             return (
               <CardMovie
