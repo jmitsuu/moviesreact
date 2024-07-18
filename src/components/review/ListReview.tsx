@@ -17,7 +17,7 @@ export function ListReview({
 }: typeCardReview) {
   return (
     <Link to={`/pagereview/${id}`}>
-      <div className="flex cursor-pointer  bg-cover hover:shadow-gray-600 shadow-md transition duration-500 mb-1  rounded-md ">
+      <div className={`flex cursor-pointer   mb-1  rounded-md `}>
         <div className="w-screen h-full flex items-center justify-between px-10 rounded-md">
           <h1 className="text-gray-50">#{listTop}</h1>
           <div className="text-left flex items-start">

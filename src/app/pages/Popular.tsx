@@ -15,15 +15,15 @@ export function Popular() {
       setData(movies.results)
     }, 350)
   }, [movies])
-  if (isLoading) {
-    return (
-      isLoading && (
-        <div className="flex flex-wrap gap-10">
-          <SkeletonMovie />
-        </div>
-      )
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     isLoading && (
+  //       <div className="flex flex-wrap gap-10">
+  //         <SkeletonMovie />
+  //       </div>
+  //     )
+  //   )
+  // }
 
   if (!data) return
   const fetchMoreData = () => {
@@ -33,7 +33,7 @@ export function Popular() {
   }
 
   return (
-    <div>
+    <div className='md:pl-20 mt-10'>
       <Title
         title="Filmes"
         description="Encontre os titulos que estão em destaque"
@@ -44,9 +44,11 @@ export function Popular() {
         next={fetchMoreData}
         hasMore={true}
         loader={
-          <div className="flex flex-wrap gap-10">
-            <SkeletonMovie />
-          </div>
+          isLoading && (
+            <div className="flex flex-wrap gap-10">
+              <SkeletonMovie />
+            </div>
+          )
         }
       >
         <LayoutCards>

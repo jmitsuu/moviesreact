@@ -16,13 +16,13 @@ export function PlayingNow() {
       setData(movies.results)
     }, 350)
   }, [movies])
-  if (isLoading) {
-    return (
-      <div className="flex flex-wrap gap-10">
-        <SkeletonMovie />
-      </div>
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex flex-wrap gap-10">
+  //       <SkeletonMovie />
+  //     </div>
+  //   )
+  // }
   if (!data) return
   const fetchMoreData = () => {
     setTimeout(() => {
@@ -33,7 +33,7 @@ export function PlayingNow() {
   }
 
   return (
-    <div>
+    <div className="md:pl-20 mt-10 ">
       <Title
         title="Em Alta"
         description="Encontre os titulos que estão em alta pela comunidade"

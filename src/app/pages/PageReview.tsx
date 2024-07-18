@@ -10,7 +10,6 @@ import { Spinner } from '@/components/Spinner'
 import { CtrlPagination } from '@/components/CtrlPagination'
 
 const urlImage = 'https://image.tmdb.org/t/p/original'
-
 interface typeReview {
   vote: number
   description: string
@@ -24,7 +23,7 @@ export function PageReview() {
 
   if (isLoading || !response) {
     return (
-      <div className="text-2xl   ">
+      <div className="text-2xl  w-full h-full flex justify-center items-center mt-60  ">
         <Spinner />
       </div>
     )
@@ -96,7 +95,6 @@ export function PageReview() {
                 title={search.title}
                 poster_path={search.poster_path}
                 backdrop_path={search.backdrop_path}
-              
               />
             </div>
           </div>

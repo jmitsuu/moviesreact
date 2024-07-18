@@ -21,9 +21,11 @@ export function CardReview({
   console.log(url)
 
   return (
-    <button className={` absolute box-content transition-all m-auto `}>
+    <button
+      className={` absolute box-content transition-all m-auto `}
+    >
       <div
-        className={`relative  flex w-[500px] ${!isHovered ? 'backdrop-blur-0 hover:z-50' : ''}`}
+        className={`relative  flex w-[500px]`}
         onMouseEnter={() => {
           setIsHovered(true)
         }}

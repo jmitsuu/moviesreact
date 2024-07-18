@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { BiCameraMovie } from 'react-icons/bi'
-import { MdRateReview } from 'react-icons/md'
 import { TbDeviceAnalytics } from 'react-icons/tb'
 import { IoHomeOutline } from 'react-icons/io5'
 import { ReactElement } from 'react'
@@ -20,11 +19,6 @@ const listMenu = [
     route: '/onthetop',
     title: 'Em Alta',
     icon: <TbDeviceAnalytics />,
-  },
-  {
-    route: '/reviews',
-    title: 'Reviews',
-    icon: <MdRateReview />,
   },
 ]
 interface typeMenu {
