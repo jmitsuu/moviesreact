@@ -34,7 +34,7 @@ export function Header() {
           return (
             <div key={el.title} className="bg-transparent">
               <Link
-                className="flex text-gray-200 p-2 items-center gap-2  rounded hover:shadow-lg -shadow-spread-2"
+                className="flex text-gray-200 p-2 items-center gap-2  uppercase rounded hover:shadow-lg -shadow-spread-2"
                 to={el.route}
               >
                 {el.icon} {el.title}

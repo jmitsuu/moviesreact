@@ -56,7 +56,11 @@ export function Home() {
     {},
   )
   const newArrayFiltered: Review[] = filteredReviews
-  const arrayObjects = Object.values(newArrayFiltered).slice(0, 10)
+  const arrayObjects = Object.values(newArrayFiltered)
+    .slice(0, 10)
+    .sort((a, b) => {
+      return b.totalVotes - a.totalVotes
+    })
 
   return (
     <HelmetProvider>

@@ -22,7 +22,7 @@ export function Popular() {
   }
 
   return (
-    <div className="md:pl-20 mt-10">
+    <div className="px-10 mt-10">
       <Title
         title="Filmes"
         description="Encontre os titulos que estão em destaque"

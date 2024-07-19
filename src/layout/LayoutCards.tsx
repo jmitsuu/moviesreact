@@ -18,7 +18,7 @@ export function LayoutCards({
         <title>{title}</title>
         <meta name="description" content={description} />
       </Helmet>
-      <div className="w-full h-full mt-20 gap-y-4  grid 2xl:grid-cols-8 xl:grid-cols-5 md:grid-cols-4 grid-cols-2 ">
+      <div className="w-full h-full mt-20 gap-y-4  flex flex-wrap gap-x-2 ">
         {children}
       </div>
     </HelmetProvider>

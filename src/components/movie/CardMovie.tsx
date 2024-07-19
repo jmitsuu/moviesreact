@@ -8,7 +8,7 @@ export function CardMovie({
   poster_path,
   release_date,
   title,
-  vote_average,
+
   id,
 }: TypeMovie) {
   return (
@@ -21,10 +21,9 @@ export function CardMovie({
             alt="poster"
           />
         </Link>
-
-        <div className=" text-xs p-2  rounded-full bg-sky-300 text-black font-bold absolute top-2 right-2 flex items-center justify-center">
+        {/* <div className=" text-xs p-2  rounded-full bg-sky-300 text-black font-bold absolute top-2 right-2 flex items-center justify-center">
           {vote_average?.toFixed(1)}
-        </div>
+        </div> */}
         <div className="flex flex-col justify-between ">
           <div className="text-gray-200 text-xs mt-1">
             <h2>{release_date?.substring(0, 4)}</h2>

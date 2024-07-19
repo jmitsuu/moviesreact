@@ -32,14 +32,14 @@ export function PageReview() {
 
   const url = JSON.stringify(urlImage + search.backdrop_path)
   return (
-    <section className="w-screen container mx-auto ">
+    <section className="w-screen container mx-auto  ">
       <div className="h-full mt-20 rounded-md p-5 ">
         <div
           style={{ backgroundImage: `url(${url})` }}
-          className={` w-full flex  justify-between bg-black bg-cover p-10 rounded-md"
+          className={` w-full flex  justify-between bg-black bg-cover p-10 rounded "
      `}
         >
-          <div className="w-[600px]   p-4 bg-black/50 rounded-md text-white">
+          <div className="w-[600px]   p-4 bg-black/50 rounded text-white ">
             <h1 className="font-bold text-4xl mb-10">
               {search.title}
             </h1>

@@ -33,7 +33,7 @@ export function PlayingNow() {
   }
 
   return (
-    <div className="md:pl-20 mt-10 ">
+    <div className="px-10 mt-10 ">
       <Title
         title="Em Alta"
         description="Encontre os titulos que estão em alta pela comunidade"
