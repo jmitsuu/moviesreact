@@ -6,15 +6,15 @@ import { TypeMovie } from '@/interfaces/TypeMovie'
 import { LayoutCards } from '@/layout/LayoutCards'
 import { useEffect, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
+
+
 export function Popular() {
   const { movies, isLoading, page, refetch, setPage } = FetchMovies()
   const [data, setData] = useState<TypeMovie[]>([])
   useEffect(() => {
     if (!movies) return
-    setTimeout(() => {}, 150)
     setData(movies.results)
   }, [movies])
-  if (!data) return
   const fetchMoreData = () => {
     refetch()
     setPage(page + 1)

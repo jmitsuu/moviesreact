@@ -1,66 +1,12 @@
-import { FetchAll } from '@/api/reviews/FetchAll'
 import { CardReview } from '@/components/review/CardReview'
 import { ListReview } from '@/components/review/ListReview'
-import { Spinner } from '@/components/Spinner'
+import { useListReview } from '@/hooks/review/useListReview'
 import { useState } from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 
-interface Review {
-  backdrop_path?: string
-  title: string
-  totalVotes: number
-  totalTitles: number
-  movieId?: string
-}
-
-interface ArrayReview {
-  title: string
-  vote: number
-}
-
-interface Accumulator {
-  [title: string]: {
-    title: string
-    vote: number
-    totalVotes: number
-    totalTitles: number
-  }
-}
 export function Home() {
-  const { reviews, isLoading } = FetchAll()
   const [isHovered, setIsHovered] = useState(false)
-  if (isLoading) {
-    return (
-      <div className="w-full h-full flex justify-center items-center mt-40">
-        <Spinner />
-      </div>
-    )
-  }
-
-  const groupArray = reviews.dados
-  const filteredReviews = groupArray.reduce(
-    (acc: Accumulator, val: ArrayReview) => {
-      const title = val.title
-      if (!acc[title]) {
-        acc[title] = {
-          ...val,
-          totalVotes: val.vote,
-          totalTitles: 1,
-        }
-      } else {
-        acc[title].totalVotes += val.vote
-        acc[title].totalTitles += 1
-      }
-      return acc
-    },
-    {},
-  )
-  const newArrayFiltered: Review[] = filteredReviews
-  const arrayObjects = Object.values(newArrayFiltered)
-    .slice(0, 10)
-    .sort((a, b) => {
-      return b.totalVotes - a.totalVotes
-    })
+  const { sortedReviews } = useListReview()
 
   return (
     <HelmetProvider>
@@ -81,7 +27,7 @@ export function Home() {
             </h2>
           </div>
           <div className="flex flex-row-reverse w-96 h-96 justify-center ml-64 transition-all mt-10  ">
-            {arrayObjects.map((item, index) => {
+            {sortedReviews?.map((item, index) => {
               return (
                 <div
                   key={index}
@@ -105,7 +51,7 @@ export function Home() {
             })}
           </div>
           <div className="xl:w-[900px] mx-auto  border border-purple-700/20 p-2 rounded-md bg-gradient-to-tr from-purple-950 via-black to-blue-950  ">
-            {arrayObjects.map((item, index) => {
+            {sortedReviews?.map((item, index) => {
               return (
                 <ListReview
                   key={index}
