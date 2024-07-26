@@ -4,32 +4,32 @@ interface typeCardReview {
   title: string
   vote: number
   data: number
-  listTop: number
-  backdrop?: string
+  listTop?: number
+  poster_path?: string
   id: number
 }
 export function ListReview({
   title,
   vote,
   data,
-  listTop,
+  poster_path,
   id,
 }: typeCardReview) {
+  const urlImage = 'https://image.tmdb.org/t/p/w500'
+  const url = urlImage + poster_path
   return (
     <Link to={`/pagereview/${id}`}>
-      <div className={`flex cursor-pointer   mb-1  rounded-md `}>
-        <div className="w-screen h-full flex items-center justify-between px-10 rounded-md">
-          <h1 className="text-gray-50">#{listTop}</h1>
-          <div className="text-left flex items-start">
-            <h1 className="text-gray-100 font-bold">{title}</h1>
-            <h2 className="text-yellow-400 font-bold ml-2">
-              {(vote / Number(data)).toFixed(1)}
-            </h2>
-          </div>
-          <div>
-            <h1 className="text-gray-100 ">Reviews ({data})</h1>
-          </div>
+      <div
+        className={` cursor-pointer relative   mb-1  rounded-md hover:scale-105 z-50 m-2 transition-all`}
+      >
+        <img alt="poster" src={url} width={300} />
+        <div className="f w-full ">
+          <h1 className="text-white mt-3">{title}</h1>
+          <h2 className="text-slate-400">
+            Avaliações: <span className="text-white">{data}</span>
+          </h2>
         </div>
+        <h3 className="text-slate-400 absolute top-0 bg-black/80 rounded-br-md p-2 mr-3">Nota:  <span className='text-white text-xl'>{Number((vote / data)).toFixed(1)}</span></h3>
       </div>
     </Link>
   )

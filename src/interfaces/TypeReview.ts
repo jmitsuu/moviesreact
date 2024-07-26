@@ -1,5 +1,5 @@
 export interface Review {
-  backdrop_path?: string
+  poster_path?: string
   title: string
   totalVotes: number
   totalTitles: number

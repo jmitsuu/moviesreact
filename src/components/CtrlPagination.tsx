@@ -7,8 +7,12 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+// import { usePaginationReview } from '@/hooks/review/usePaginationReview'
+// import { Review } from '@/interfaces/TypeReview';
 
 export function CtrlPagination() {
+
+  
   return (
     <Pagination>
       <PaginationContent>
@@ -16,7 +20,8 @@ export function CtrlPagination() {
           <PaginationPrevious href="#" />
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
+          {/* <PaginationLink href="#">1</PaginationLink> */}
+          <PaginationLink  href="#">1</PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationEllipsis />

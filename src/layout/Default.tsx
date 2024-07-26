@@ -8,7 +8,7 @@ export function Default() {
     window.scrollTo(0, 0)
   }, [location.pathname])
   return (
-    <div className=" bg-gradient-to-tr from-purple-950 via-black to-blue-950 w-screen min-h-screen  ">
+    <div className="bg-black w-screen min-h-screen  ">
       <Header />
 
       <Outlet />

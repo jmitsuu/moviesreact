@@ -7,7 +7,7 @@ import { BarProgressAvaliation } from '@/components/review/BarProgressAvaliation
 import { FindMovie } from '@/api/movies/FindMovie'
 import { utilFilterVotes } from '@/utils/utilFilterVotes'
 import { Spinner } from '@/components/Spinner'
-import { CtrlPagination } from '@/components/CtrlPagination'
+
 
 const urlImage = 'https://image.tmdb.org/t/p/original'
 interface typeReview {
@@ -15,6 +15,7 @@ interface typeReview {
   description: string
   createdAt: string
 }
+
 export function PageReview() {
   const { id } = useParams()
 
@@ -29,6 +30,7 @@ export function PageReview() {
     )
   }
   const { dados } = response
+
 
   const url = JSON.stringify(urlImage + search.backdrop_path)
   return (
@@ -123,7 +125,7 @@ export function PageReview() {
               </>
             )}
           </div>
-          <CtrlPagination />
+          {/* <CtrlPagination data={dados}/> */}
         </div>
       </div>
     </section>
